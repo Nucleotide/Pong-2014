@@ -12,4 +12,11 @@ package pong2014.logiikka;
  */
 public class Maila {
     
+    private double x;
+    private double y;
+
+    public Maila(double paikka) {
+        this.x = paikka;
+        this.y = 77;
+    }
 }

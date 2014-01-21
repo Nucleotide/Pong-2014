@@ -13,7 +13,11 @@ class Peli {
     }
     
     public void aloita() {
-        
+        this.valikko();
+    }
+
+    private void valikko() {
+        System.out.println("Esc lopettaa, Enter pelaa");
     }
     
 }
