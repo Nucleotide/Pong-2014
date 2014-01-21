@@ -13,11 +13,17 @@ class Kentta {
     private double leveys;
     
     public Kentta() {
-        this.pelaaja = new Pelaaja(274.0);
-        this.vastustaja = new Pelaaja(1.0);
+        this.pelaaja = new Pelaaja(273.0);
+        this.vastustaja = new Pelaaja(2.0);
         this.pallo = new Pallo();
         this.korkeus = 153.0;
         this.leveys = 275.0;
+    }
+    
+    public void pelaa() {
+        while (this.pallo.getX() > 0.0 && this.pallo.getX() < 275.0) {
+            this.pallo.liiku();
+        }
     }
     
 }

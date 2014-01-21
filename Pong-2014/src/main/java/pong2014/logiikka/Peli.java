@@ -13,11 +13,15 @@ class Peli {
     }
     
     public void aloita() {
-        this.valikko();
+        this.kentta.pelaa();
     }
-
-    private void valikko() {
-        System.out.println("Esc lopettaa, Enter pelaa");
+    
+    public void valikko() {
+        System.out.println("Piirretään alkuvalikko\nEnter pelaa ja Esc lopettaa");
+    }
+    
+    public boolean pelataanko() {
+        return true;
     }
     
 }

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pong2014.logiikka;
 
 import java.util.Random;
@@ -23,7 +17,7 @@ class Pallo {
         this.x = 138;
         this.y = 77;
         Random random = new Random();
-        int alkuSuunta = random.nextInt();
+        int alkuSuunta = random.nextInt(2);
         this.alunSuunta(alkuSuunta);
     }
     
@@ -36,11 +30,15 @@ class Pallo {
     }
     
     public void liiku() {
-        
+        double radiaanit = Math.toRadians(this.suunta);
+        double liikeX = Math.cos(radiaanit);
+        double liikeY = Math.sin(radiaanit);
+        this.x += liikeX;
+        this.y += liikeY;
     }
     
-    public void setSuunta(double suunta) {
-        this.suunta = suunta;
+    public void setSuunta(double uusiSuunta) {
+        this.suunta = uusiSuunta;
     }
     
     public void uusiPallo() {
@@ -50,9 +48,9 @@ class Pallo {
 
     private void alunSuunta(int alkuSuunta) {
         if (alkuSuunta == 1) {
-            this.setSuunta(50.0);
+            this.setSuunta(350.0);
         } else {
-            this.setSuunta(265.0);
+            this.setSuunta(190.0);
         }
     }
     

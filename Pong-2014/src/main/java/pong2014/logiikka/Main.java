@@ -6,9 +6,16 @@ package pong2014.logiikka;
  */
 public class Main 
 {
-    public static void main( String[] args )
-    {
-        Peli uusi = new Peli();
-        uusi.aloita();
+    public static void main( String[] args ){
+        
+        while (true) {
+            Peli uusi = new Peli();
+            uusi.valikko();
+            if (uusi.pelataanko()) {
+                uusi.aloita();
+            } else {
+                break;
+            }
+        }
     }
 }
