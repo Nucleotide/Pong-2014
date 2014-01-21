@@ -6,4 +6,8 @@ package pong2014.logiikka;
  */
 class Kentta {
     
+    private Pelaaja pelaaja;
+    private Pelaaja vastustaja;
+    private Pallo pallo;
+    
 }
