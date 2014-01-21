@@ -8,7 +8,9 @@ class Peli {
     
     private Kentta kentta;
     
-    
+    public Peli() {
+        this.kentta = new Kentta();
+    }
     
     public void aloita() {
         
