@@ -29,9 +29,21 @@ class Kentta {
     private void pelaaPallo() {
         while (this.pallo.getX() > 0.0 && this.pallo.getX() < 275.0) {
             this.pallo.liiku();
+            if (this.pallo.getY() < 1.0 || this.pallo.getY() > 152.0) {
+                this.pallo.kimpoaSeinasta();
+            }
         }
+        this.kenellePiste();
         this.pallo.uusiPallo();
         this.pallo.setSuunta(0.0);
+    }
+
+    private void kenellePiste() {
+        if (this.pallo.getX() <= 0.0) {
+            this.pelaaja.lisaaPiste();
+        } else {
+            this.vastustaja.lisaaPiste();
+        }
     }
     
 }

@@ -33,4 +33,8 @@ public class Maila {
     public double getY() {
         return this.y;
     }
+    
+    public double getX() {
+        return this.x;
+    }
 }

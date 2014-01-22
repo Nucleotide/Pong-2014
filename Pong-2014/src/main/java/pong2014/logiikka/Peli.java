@@ -20,6 +20,7 @@ class Peli {
         while (this.pelataanko) {
             this.kentta.pelaaOttelu();
             this.pelataankoPeli();
+            break;
         }
     }
     

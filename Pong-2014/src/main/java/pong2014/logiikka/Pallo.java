@@ -49,6 +49,14 @@ class Pallo {
         this.x = 138.0;
         this.y = 77.0;
     }
+    
+    public void kimpoaSeinasta(){
+        if (this.y < 1.0) {
+            
+        } else {
+            
+        }
+    }
 
     private void alunSuunta(int alkuSuunta) {
         if (alkuSuunta == 1) {
