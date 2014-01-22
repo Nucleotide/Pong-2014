@@ -7,21 +7,33 @@ package pong2014.logiikka;
 class Peli {
     
     private Kentta kentta;
+    private boolean pelataanko;
     
     public Peli() {
         this.kentta = new Kentta();
+        this.pelataanko = true;
     }
     
     public void aloita() {
-        this.kentta.pelaa();
+        this.pelataankoPeli();
+        
+        while (this.pelataanko) {
+            this.kentta.pelaaOttelu();
+            this.pelataankoPeli();
+        }
     }
     
-    public void valikko() {
+    private void valikko() {
         System.out.println("Piirretään alkuvalikko\nEnter pelaa ja Esc lopettaa");
     }
     
-    public boolean pelataanko() {
-        return true;
+    private void pelataankoPeli() {
+        this.valikko();
+        if (true) {
+            this.pelataanko = true;
+        } else {
+            this.pelataanko = false;
+        }
     }
     
 }

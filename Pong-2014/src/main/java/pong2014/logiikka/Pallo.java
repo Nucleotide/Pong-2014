@@ -41,6 +41,10 @@ class Pallo {
         this.suunta = uusiSuunta;
     }
     
+    public double getSuunta() {
+        return this.suunta;
+    }
+    
     public void uusiPallo() {
         this.x = 138.0;
         this.y = 77.0;

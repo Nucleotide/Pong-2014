@@ -21,4 +21,12 @@ class Pelaaja {
     public void lisaaPiste() {
         this.pisteet++;
     }
+    
+    public void liikutaMailaaYlos() {
+        this.maila.liikuYlos();
+    }
+    
+    public void liikutaMailaaAlas() {
+        this.maila.liikuAlas();
+    }
 }

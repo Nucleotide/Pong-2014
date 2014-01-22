@@ -17,4 +17,20 @@ public class Maila {
         this.korkeus = 30.0;
         this.leveys = 4.0;
     }
+    
+    public void liikuAlas() {
+        if (this.y < 133.0) {
+            this.y++;
+        }
+    }
+    
+    public void liikuYlos() {
+        if (this.y > 0.0) {
+            this.y--;
+        }
+    }
+    
+    public double getY() {
+        return this.y;
+    }
 }
