@@ -19,7 +19,9 @@ class Pelaaja {
     }
     
     public void lisaaPiste() {
-        this.pisteet++;
+        if (this.pisteet < 10) {
+            this.pisteet++;
+        }    
     }
     
     public void liikutaMailaaYlos() {

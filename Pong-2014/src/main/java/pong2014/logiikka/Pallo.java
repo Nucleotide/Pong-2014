@@ -52,7 +52,7 @@ class Pallo {
     
     public void kimpoaSeinasta(){
         if (this.y < 1.0) {
-            
+            //kesken tämä metodi..
         } else {
             
         }

@@ -13,11 +13,46 @@ import static org.junit.Assert.*;
  */
 public class PalloTest {
     
+    private Pallo pallo;
+    
     public PalloTest() {
     }
 
     @Before
     public void setUp() {
+        this.pallo = new Pallo();
+    }
+    
+    @Test
+    public void pallonAloitusPaikkaOikea(){
+        double x = this.pallo.getX();
+        double y = this.pallo.getY();
+        
+        assertEquals(138.0, x, 0);
+        assertEquals(77.0, y, 0);
+    }
+    
+    @Test
+    public void pallollaOnAluksiSuunta() {
+        double suunta = this.pallo.getSuunta();
+        assertTrue("Suunta olemassa", suunta == 350.0 || suunta == 190.0);
+    }
+    
+    @Test
+    public void uusiPallonAsettaaPaikanOikein() {
+        this.pallo.uusiPallo();
+        double x = this.pallo.getX();
+        double y = this.pallo.getY();
+        
+        assertEquals(138.0, x, 0);
+        assertEquals(77.0, y, 0);
+    }
+    
+    @Test
+    public void suunnanAsetusMuuttaaSuuntaa() {
+        this.pallo.setSuunta(110.0);
+        double suunta = this.pallo.getSuunta();
+        assertEquals(110.0, suunta, 0);
     }
     
 }
