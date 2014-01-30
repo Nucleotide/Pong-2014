@@ -13,11 +13,16 @@ import static org.junit.Assert.*;
  */
 public class PeliTest {
     
+    private Peli peli;
+    
     public PeliTest() {
     }
     
     @Before
     public void setUp() {
+        this.peli = new Peli();
     }
+    
+    
     
 }
