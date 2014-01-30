@@ -20,7 +20,7 @@ public class PelaajaTest {
     
     @Before
     public void setUp() {
-        this.pelaaja = new Pelaaja(15.0);
+        this.pelaaja = new Pelaaja(12.0);
     }
     
     @Test

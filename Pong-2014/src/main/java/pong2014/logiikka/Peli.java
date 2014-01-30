@@ -37,6 +37,7 @@ class Peli {
     private void pelaaPallo() {
         while (this.pallo.getX() > 2.0 && this.pallo.getX() < 56.0) {
             this.pallo.liiku();
+            this.vastustaja.liikutaMailaa();
             
             if (this.kimpoanko()) {
                 this.pallo.kimpoaSeinasta();

@@ -21,58 +21,53 @@ public class MailaTest {
     
     @Before
     public void setUp() {
-        this.pelaajanMaila = new Maila(273.0);
-        this.vastustajanMaila = new Maila(2.0);
+        this.pelaajanMaila = new Maila(12.0);
+        this.vastustajanMaila = new Maila(24.0);
     }
 
     @Test
     public void onkoPelaajanMailanPaikkaOikeaAlussa() {
-        double mailanY = this.pelaajanMaila.getY();
-        double mailanX = this.pelaajanMaila.getX();
-        assertEquals(77.0, mailanY, 0);
-        assertEquals(273.0, mailanX, 0);
-        
+        double paikka = this.pelaajanMaila.getPaikka();
+        assertEquals(12.0, paikka, 0);
     }
     
     @Test
     public void onkoVastustajanMailanPaikkaOikeaAlussa() {
-        double mailanY = this.vastustajanMaila.getY();
-        double mailanX = this.vastustajanMaila.getX();
-        assertEquals(77.0, mailanY, 0);
-        assertEquals(2.0, mailanX, 0); 
+        double paikka = this.vastustajanMaila.getPaikka();
+        assertEquals(24.0, paikka, 0); 
     }
     
     @Test
     public void liikutaMailaaYlos() {
         this.pelaajanMaila.liikuYlos();
-        double mailanPaikkaLopuksi = this.pelaajanMaila.getY();
-        assertEquals(76.0, mailanPaikkaLopuksi, 0);
+        double mailanPaikkaLopuksi = this.pelaajanMaila.getPaikka();
+        assertEquals(11.0, mailanPaikkaLopuksi, 0);
     }
     
     @Test
     public void liikutaMailaaAlas() {
         this.pelaajanMaila.liikuAlas();
-        double mailanPaikkaLopuksi = this.pelaajanMaila.getY();
-        assertEquals(78.0, mailanPaikkaLopuksi, 0);
+        double mailanPaikkaLopuksi = this.pelaajanMaila.getPaikka();
+        assertEquals(13.0, mailanPaikkaLopuksi, 0);
     }
     
     @Test
     public void mailaaEiVoiLiikuttaaAlasKentanUlkopuolelle() {
-        Maila alas = new Maila(50.0);
-        for (int i=0;i<100; i++) {
+        Maila alas = new Maila(12.0);
+        for (int i=0;i<20; i++) {
             alas.liikuAlas();
         }
-        double paikkaLopuksi = alas.getY();
-        assertEquals(133.0, paikkaLopuksi, 0);
+        double paikkaLopuksi = alas.getPaikka();
+        assertEquals(24.0, paikkaLopuksi, 0);
     }
     
     @Test
     public void mailaaEiVoiLiikuttaaYlosKentanUlkopuolelle() {
-        Maila ylos = new Maila(50.0);
-        for (int i=0;i<100; i++) {
+        Maila ylos = new Maila(12.0);
+        for (int i=0;i<20; i++) {
             ylos.liikuYlos();
         }
-        double paikkaLopuksi = ylos.getY();
+        double paikkaLopuksi = ylos.getPaikka();
         assertEquals(0.0, paikkaLopuksi, 0);
     }
     

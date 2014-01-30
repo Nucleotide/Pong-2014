@@ -25,7 +25,20 @@ public class Vastustaja {
     }
     
     public void liikutaMailaa() {
-        this.maila.liikuEdestakaisin();
+        int suuntain = 1;
+        while (true) {
+            if (suuntain == 1) {
+                for (int i = 0; i < 24; i++) {
+                    this.maila.liikuYlos();
+                }
+                suuntain = 0;
+            } else if (suuntain == 0) {
+                for (int i = 0; i < 24; i++) {
+                    this.maila.liikuAlas();
+                }
+                suuntain = 1;
+            }
+        }
     }
 
     public void lyo(Pallo pallo) {

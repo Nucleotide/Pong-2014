@@ -28,8 +28,8 @@ public class PalloTest {
         double x = this.pallo.getX();
         double y = this.pallo.getY();
         
-        assertEquals(138.0, x, 0);
-        assertEquals(77.0, y, 0);
+        assertEquals(29.0, x, 0);
+        assertEquals(14.0, y, 0);
     }
     
     @Test
@@ -40,19 +40,21 @@ public class PalloTest {
     
     @Test
     public void uusiPallonAsettaaPaikanOikein() {
-        this.pallo.uusiPallo();
+        this.pallo.uusiPallo(1.0);
         double x = this.pallo.getX();
         double y = this.pallo.getY();
         
-        assertEquals(138.0, x, 0);
-        assertEquals(77.0, y, 0);
+        assertEquals(29.0, x, 0);
+        assertEquals(14.0, y, 0);
     }
     
     @Test
     public void suunnanAsetusMuuttaaSuuntaa() {
         this.pallo.setSuunta(110.0);
-        double suunta = this.pallo.getSuunta();
-        assertEquals(110.0, suunta, 0);
+        double eka = this.pallo.getSuunta();
+        this.pallo.setSuunta(200.0);
+        double toka = this.pallo.getSuunta();
+        assertTrue(eka != toka);
     }
     
 }
