@@ -35,10 +35,14 @@ class Pelaaja {
     void lyo(Pallo pallo) {
         double korkeus = pallo.getY();
         double mailanSijainti = this.maila.getPaikka();
-        if (korkeus >= mailanSijainti || korkeus <= mailanSijainti + 6.0) {
+        if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 6.0) {
             pallo.kimpoaMailasta(1);
         } else {
             pallo.setPaikka(-1.0);
         }
+    }
+    
+    public Maila getMaila() {
+        return this.maila;
     }
 }

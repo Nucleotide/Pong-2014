@@ -32,7 +32,7 @@ class Pallo {
     public void liiku() {
         double radiaanit = Math.toRadians(this.suunta);
         double liikeX = Math.cos(radiaanit);
-        double liikeY = Math.sin(radiaanit);
+        double liikeY = Math.sin(radiaanit) * -1;
         this.rajatapausLeveys(liikeX);
         this.rajatapausKorkeus(liikeY);
     }
@@ -93,27 +93,27 @@ class Pallo {
 
     public void kimpoaMailasta(int lyoja) {
         if (lyoja == 1) {
-            this.setSuunta(pelaajaLyo());
+            this.setSuunta(this.pelaajaLyo());
         } else {
-            this.setSuunta(vastustajaLyo());
+            this.setSuunta(this.vastustajaLyo());
         }
     }
 
     private double seinakimmotuksenSuunta() {
         double uusiSuunta = 0.0;
         double erotus = 0.0;
-        if (this.y == 0 && this.suunta > 90.0) {
-            erotus = 180.0 - this.suunta;
-            uusiSuunta = 180.0 + erotus ;
-        } else if (this.y == 0 && this.suunta < 180.0) {
+        if (this.y == 0 && this.suunta < 90.0) {
             erotus = 90.0 - this.suunta;
-            uusiSuunta = 360.0 - erotus;
+            uusiSuunta = 270.0 + erotus ;
+        } else if (this.y == 0 && this.suunta < 180.0 && this.suunta > 90.0) {
+            erotus = 180 - this.suunta;
+            uusiSuunta = 180.0 + erotus;
         } else if (this.y == 28.0 && this.suunta > 270.0) {
-            erotus = 360.0 - this.suunta;
-            uusiSuunta = 0.0 + erotus;
+            erotus = this.suunta - 270.0;
+            uusiSuunta = 90.0 - erotus;
         } else {
             erotus = 270.0 - this.suunta;
-            uusiSuunta = 180.0 - erotus;
+            uusiSuunta = 90.0 + erotus;
         }
         return uusiSuunta;
     }
@@ -126,7 +126,7 @@ class Pallo {
             uusiSuunta = 270.0 + erotus;
         } else {
             erotus = 180.0 - this.suunta;
-            uusiSuunta = 90.0 + erotus;
+            uusiSuunta = 0.0 + erotus;
         }
         return uusiSuunta;
     }
