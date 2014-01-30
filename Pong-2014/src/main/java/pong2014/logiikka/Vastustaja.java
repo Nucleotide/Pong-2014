@@ -44,11 +44,15 @@ public class Vastustaja {
     public void lyo(Pallo pallo) {
         double korkeus = pallo.getY();
         double mailanSijainti = this.maila.getPaikka();
-        if (korkeus >= mailanSijainti || korkeus <= mailanSijainti + 6.0) {
+        if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 6.0) {
             pallo.kimpoaMailasta(0);
         } else {
             pallo.setPaikka(61.0);
         }
+    }
+    
+    public Maila getMaila() {
+        return this.maila;
     }
     
 }
