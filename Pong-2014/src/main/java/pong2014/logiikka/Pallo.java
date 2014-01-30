@@ -60,11 +60,7 @@ class Pallo {
     }
     
     public void kimpoaSeinasta(){
-        if (this.y < 2.0) {
-            //kesken tämä metodi..
-        } else {
-            
-        }
+        this.setSuunta(this.seinakimmotuksenSuunta());
     }
 
     private void alunSuunta(int alkuSuunta) {
@@ -93,6 +89,59 @@ class Pallo {
         } else {
             this.y += liikeY;
         }
+    }
+
+    public void kimpoaMailasta(int lyoja) {
+        if (lyoja == 1) {
+            this.setSuunta(pelaajaLyo());
+        } else {
+            this.setSuunta(vastustajaLyo());
+        }
+    }
+
+    private double seinakimmotuksenSuunta() {
+        double uusiSuunta = 0.0;
+        double erotus = 0.0;
+        if (this.y == 0 && this.suunta > 90.0) {
+            erotus = 180.0 - this.suunta;
+            uusiSuunta = 180.0 + erotus ;
+        } else if (this.y == 0 && this.suunta < 180.0) {
+            erotus = 90.0 - this.suunta;
+            uusiSuunta = 360.0 - erotus;
+        } else if (this.y == 28.0 && this.suunta > 270.0) {
+            erotus = 360.0 - this.suunta;
+            uusiSuunta = 0.0 + erotus;
+        } else {
+            erotus = 270.0 - this.suunta;
+            uusiSuunta = 180.0 - erotus;
+        }
+        return uusiSuunta;
+    }
+
+    private double pelaajaLyo() {
+        double uusiSuunta = 0.0;
+        double erotus = 0.0;
+        if (this.suunta > 180.0) {
+            erotus = 270.0 - this.suunta;
+            uusiSuunta = 270.0 + erotus;
+        } else {
+            erotus = 180.0 - this.suunta;
+            uusiSuunta = 90.0 + erotus;
+        }
+        return uusiSuunta;
+    }
+
+    private double vastustajaLyo() {
+        double uusiSuunta = 0.0;
+        double erotus = 0.0;
+        if (this.suunta < 90.0) {
+            erotus = 90.0 - this.suunta;
+            uusiSuunta = 90.0 + erotus;
+        } else {
+            erotus = 360.0 - this.suunta;
+            uusiSuunta = 180.0 + erotus;
+        }
+        return uusiSuunta;
     }
     
 }

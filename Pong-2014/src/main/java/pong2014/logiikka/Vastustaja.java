@@ -33,7 +33,13 @@ public class Vastustaja {
     }    
 
     void lyo(Pallo pallo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double korkeus = pallo.getY();
+        double mailanSijainti = this.maila.getPaikka();
+        if (korkeus >= mailanSijainti || korkeus <= mailanSijainti + 6.0) {
+            pallo.kimpoaMailasta(0);
+        } else {
+            pallo.setPaikka(61.0);
+        }
     }
     
 }
