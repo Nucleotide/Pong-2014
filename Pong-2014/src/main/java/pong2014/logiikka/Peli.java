@@ -14,15 +14,16 @@ class Peli {
     
     public Peli() {
         this.kentta = new Kentta();
-        this.vastustaja = new Vastustaja(12.0);
+        this.vastustaja = new Vastustaja(24.0);
         this.pelaaja = new Pelaaja(12.0);
         this.pelataanko = true;
-        pallo = this.kentta.getPallo();
     }
     
     
     public void aloita() {
         this.pelataankoPeli();
+        pallo = this.kentta.getPallo();
+        
         
         while (this.pelataanko) {
             if (!this.voittaja()) {

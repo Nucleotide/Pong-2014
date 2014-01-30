@@ -32,4 +32,20 @@ public class Maila {
         return this.paikka;
     }
     
+    public void liikuEdestakaisin() {
+        int suuntain = 1;
+        while (true) {
+            if (suuntain == 1) {
+                for (int i = 0; i < 24; i++) {
+                    this.liikuYlos();
+                }
+                suuntain = 0;
+            } else if (suuntain == 0) {
+                for (int i = 0; i < 24; i++) {
+                    this.liikuAlas();
+                }
+                suuntain = 1;
+            }
+        }
+    }
 }

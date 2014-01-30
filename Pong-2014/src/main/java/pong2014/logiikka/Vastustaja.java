@@ -24,15 +24,11 @@ public class Vastustaja {
         }    
     }
     
-    public void liikutaMailaaYlos() {
-        this.maila.liikuYlos();
+    public void liikutaMailaa() {
+        this.maila.liikuEdestakaisin();
     }
-    
-    public void liikutaMailaaAlas() {
-        this.maila.liikuAlas();
-    }    
 
-    void lyo(Pallo pallo) {
+    public void lyo(Pallo pallo) {
         double korkeus = pallo.getY();
         double mailanSijainti = this.maila.getPaikka();
         if (korkeus >= mailanSijainti || korkeus <= mailanSijainti + 6.0) {
