@@ -6,35 +6,30 @@ package pong2014.logiikka;
  */
 public class Maila {
     
-    private double x;
-    private double y;
+    private double paikka;
     private double korkeus;
     private double leveys;
 
     public Maila(double paikka) {
-        this.x = paikka;
-        this.y = 77.0;
-        this.korkeus = 30.0;
-        this.leveys = 4.0;
+        this.paikka = paikka;
+        this.korkeus = 6.0;
+        this.leveys = 2.0;
     }
     
     public void liikuAlas() {
-        if (this.y < 133.0) {
-            this.y++;
+        if (this.paikka < 24.0) {
+            this.paikka++;
         }
     }
     
     public void liikuYlos() {
-        if (this.y > 0.0) {
-            this.y--;
+        if (this.paikka > 0.0) {
+            this.paikka--;
         }
     }
     
-    public double getY() {
-        return this.y;
+    public double getPaikka() {
+        return this.paikka;
     }
     
-    public double getX() {
-        return this.x;
-    }
 }

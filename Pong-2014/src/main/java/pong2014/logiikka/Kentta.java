@@ -6,44 +6,28 @@ package pong2014.logiikka;
  */
 class Kentta {
     
-    private Pelaaja pelaaja;
-    private Pelaaja vastustaja;
     private Pallo pallo;
     private double korkeus;
     private double leveys;
     
     public Kentta() {
-        this.pelaaja = new Pelaaja(273.0);
-        this.vastustaja = new Pelaaja(2.0);
         this.pallo = new Pallo();
-        this.korkeus = 153.0;
-        this.leveys = 275.0;
+        this.korkeus = 30.0;
+        this.leveys = 60.0;
     }
     
-    public void pelaaOttelu() {
-        while (this.pelaaja.kerroPisteet() < 10 && this.vastustaja.kerroPisteet() < 10) {
-            this.pelaaPallo();
-        }
-    }
-    
-    private void pelaaPallo() {
-        while (this.pallo.getX() > 0.0 && this.pallo.getX() < 275.0) {
-            this.pallo.liiku();
-            if (this.pallo.getY() < 1.0 || this.pallo.getY() > 152.0) {
-                this.pallo.kimpoaSeinasta();
-            }
-        }
-        this.kenellePiste();
-        this.pallo.uusiPallo();
-        this.pallo.setSuunta(0.0);
+    public Pallo getPallo() {
+        return this.pallo;
     }
 
-    private void kenellePiste() {
-        if (this.pallo.getX() <= 0.0) {
-            this.pelaaja.lisaaPiste();
-        } else {
-            this.vastustaja.lisaaPiste();
+    public double kenellePiste() {
+        double kummalle = 0.0;
+        if (this.pallo.getX() < 2.0) {
+            kummalle = 1.0;
+        } else if (this.pallo.getX() > 58.0){
+            kummalle = 2.0;
         }
+        return kummalle;
     }
     
 }

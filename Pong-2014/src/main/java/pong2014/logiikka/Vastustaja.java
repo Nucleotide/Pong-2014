@@ -4,12 +4,12 @@ package pong2014.logiikka;
  *
  * @author joonaslaakkonen
  */
-class Pelaaja {
+public class Vastustaja {
     
     private Maila maila;
     private int pisteet;
     
-    public Pelaaja(double paikka) {
+    public Vastustaja(double paikka) {
         this.maila = new Maila(paikka);
         this.pisteet = 0;
     }
@@ -30,9 +30,10 @@ class Pelaaja {
     
     public void liikutaMailaaAlas() {
         this.maila.liikuAlas();
-    }
+    }    
 
     void lyo(Pallo pallo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }
