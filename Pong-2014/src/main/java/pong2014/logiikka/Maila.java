@@ -6,29 +6,29 @@ package pong2014.logiikka;
  */
 public class Maila {
     
-    private double paikka;
-    private double korkeus;
-    private double leveys;
+    private int paikka;
+    private int korkeus;
+    private int leveys;
 
-    public Maila(double paikka) {
+    public Maila(int paikka) {
         this.paikka = paikka;
-        this.korkeus = 6.0;
-        this.leveys = 2.0;
+        this.korkeus = 6;
+        this.leveys = 2;
     }
     
     public void liikuAlas() {
-        if (this.paikka < 24.0) {
+        if (this.paikka < 24) {
             this.paikka++;
         }
     }
     
     public void liikuYlos() {
-        if (this.paikka > 0.0) {
+        if (this.paikka > 0) {
             this.paikka--;
         }
     }
     
-    public double getPaikka() {
+    public int getPaikka() {
         return this.paikka;
     }
 }

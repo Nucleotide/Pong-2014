@@ -1,7 +1,7 @@
 package pong2014.logiikka;
 
 import javax.swing.SwingUtilities;
-import pong2014.ui.PelinPiirtoAlusta;
+import pong2014.ui.Kayttoliittyma;
 
 /**
  *
@@ -9,12 +9,20 @@ import pong2014.ui.PelinPiirtoAlusta;
  */
 public class Main {
     public static void main( String[] args ){
-        SwingUtilities.invokeLater(new Runnable() {
-        @Override
-        public void run() {
-            PelinPiirtoAlusta peli = new PelinPiirtoAlusta();
-            peli.setVisible(true);
+        Peli peli = new Peli();
+
+        Kayttoliittyma ui = new Kayttoliittyma(peli);
+        SwingUtilities.invokeLater(ui);
+
+        while (ui.getPaivitettava() == null) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                System.out.println("Piirtoalustaa ei ole vielä luotu.");
             }
-        });
+}
+
+            peli.setPaivitettava(ui.getPaivitettava());
+            peli.aloita();
     }
 }

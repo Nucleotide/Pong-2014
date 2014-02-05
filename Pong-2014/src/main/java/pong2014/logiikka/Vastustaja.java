@@ -9,7 +9,7 @@ public class Vastustaja {
     private Maila maila;
     private int pisteet;
     
-    public Vastustaja(double paikka) {
+    public Vastustaja(int paikka) {
         this.maila = new Maila(paikka);
         this.pisteet = 0;
     }
@@ -42,12 +42,12 @@ public class Vastustaja {
     }
 
     public void lyo(Pallo pallo) {
-        double korkeus = pallo.getY();
-        double mailanSijainti = this.maila.getPaikka();
-        if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 6.0) {
+        int korkeus = pallo.getY();
+        int mailanSijainti = this.maila.getPaikka();
+        if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 6) {
             pallo.kimpoaMailasta(0);
         } else {
-            pallo.setPaikka(61.0);
+            pallo.setPaikka(61);
         }
     }
     

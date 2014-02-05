@@ -8,54 +8,54 @@ import java.util.Random;
  */
 public class Pallo {
     
-    private double x;
-    private double y;
-    private double suunta;
+    private int x;
+    private int y;
+    private int suunta;
     
     
     public Pallo() {
-        this.x = 29.0;
-        this.y = 14.0;
+        this.x = 29;
+        this.y = 14;
         Random random = new Random();
         int alkuSuunta = random.nextInt(2);
         this.alunSuunta(alkuSuunta);
     }
     
-    public double getX() {
+    public int getX() {
         return this.x;
     }
     
-    public double getY() {
+    public int getY() {
         return this.y;
     }
     
     public void liiku() {
-        double radiaanit = Math.toRadians(this.suunta);
-        double liikeX = Math.cos(radiaanit);
-        double liikeY = Math.sin(radiaanit) * -1;
+        int radiaanit = (int) Math.toRadians(this.suunta);
+        int liikeX = (int)Math.cos(radiaanit);
+        int liikeY = (int)Math.sin(radiaanit) * -1;
         this.rajatapausLeveys(liikeX);
         this.rajatapausKorkeus(liikeY);
     }
     
-    public void setSuunta(double uusiSuunta) {
+    public void setSuunta(int uusiSuunta) {
         this.suunta = uusiSuunta;
     }
     
-    public double getSuunta() {
+    public int getSuunta() {
         return this.suunta;
     }
     
-    public void uusiPallo(double suunta) {
-        this.x = 29.0;
-        this.y = 14.0;
-        if (suunta == 1.0) {
-            this.setSuunta(350.0);
+    public void uusiPallo(int suunta) {
+        this.x = 29;
+        this.y = 14;
+        if (suunta == 1) {
+            this.setSuunta(350);
         } else {
-            this.setSuunta(190.0);
+            this.setSuunta(190);
         }
     }
     
-    public void setPaikka(double paikka) {
+    public void setPaikka(int paikka) {
         this.x = paikka;
     }
     
@@ -65,27 +65,27 @@ public class Pallo {
 
     private void alunSuunta(int alkuSuunta) {
         if (alkuSuunta == 1) {
-            this.setSuunta(350.0);
+            this.setSuunta(350);
         } else {
-            this.setSuunta(190.0);
+            this.setSuunta(190);
         }
     }
 
-    private void rajatapausLeveys(double liikeX) {
-        if (this.x + liikeX <= 2.0) {
-            this.x = 2.0;
-        } else if (this.x + liikeX >= 56.0) {
-            this.x = 56.0;
+    private void rajatapausLeveys(int liikeX) {
+        if (this.x + liikeX <= 2) {
+            this.x = 2;
+        } else if (this.x + liikeX >= 56) {
+            this.x = 56;
         } else {
             this.x += liikeX;
         }
     }
 
-    private void rajatapausKorkeus(double liikeY) {
-        if (this.y + liikeY <= 0.0) {
-            this.y = 0.0;
-        } else if (this.y + liikeY >= 28.0) {
-            this.y = 28.0;
+    private void rajatapausKorkeus(int liikeY) {
+        if (this.y + liikeY <= 0) {
+            this.y = 0;
+        } else if (this.y + liikeY >= 28) {
+            this.y = 28;
         } else {
             this.y += liikeY;
         }
@@ -99,49 +99,48 @@ public class Pallo {
         }
     }
 
-    private double seinakimmotuksenSuunta() {
-        double uusiSuunta = 0.0;
-        double erotus = 0.0;
-        if (this.y == 0 && this.suunta < 90.0) {
-            erotus = 90.0 - this.suunta;
-            uusiSuunta = 270.0 + erotus ;
-        } else if (this.y == 0 && this.suunta < 180.0 && this.suunta > 90.0) {
+    private int seinakimmotuksenSuunta() {
+        int uusiSuunta = 0;
+        int erotus = 0;
+        if (this.y == 0 && this.suunta < 90) {
+            erotus = 90 - this.suunta;
+            uusiSuunta = 270 + erotus ;
+        } else if (this.y == 0 && this.suunta < 180 && this.suunta > 90) {
             erotus = 180 - this.suunta;
-            uusiSuunta = 180.0 + erotus;
-        } else if (this.y == 28.0 && this.suunta > 270.0) {
-            erotus = this.suunta - 270.0;
-            uusiSuunta = 90.0 - erotus;
+            uusiSuunta = 180 + erotus;
+        } else if (this.y == 28 && this.suunta > 270) {
+            erotus = this.suunta - 270;
+            uusiSuunta = 90 - erotus;
         } else {
-            erotus = 270.0 - this.suunta;
-            uusiSuunta = 90.0 + erotus;
+            erotus = 270 - this.suunta;
+            uusiSuunta = 90 + erotus;
         }
         return uusiSuunta;
     }
 
-    private double pelaajaLyo() {
-        double uusiSuunta = 0.0;
-        double erotus = 0.0;
-        if (this.suunta > 180.0) {
-            erotus = 270.0 - this.suunta;
-            uusiSuunta = 270.0 + erotus;
+    private int pelaajaLyo() {
+        int uusiSuunta = 0;
+        int erotus = 0;
+        if (this.suunta > 180) {
+            erotus = 270 - this.suunta;
+            uusiSuunta = 270 + erotus;
         } else {
-            erotus = 180.0 - this.suunta;
-            uusiSuunta = 0.0 + erotus;
+            erotus = 180 - this.suunta;
+            uusiSuunta = 0 + erotus;
         }
         return uusiSuunta;
     }
 
-    private double vastustajaLyo() {
-        double uusiSuunta = 0.0;
-        double erotus = 0.0;
-        if (this.suunta < 90.0) {
-            erotus = 90.0 - this.suunta;
-            uusiSuunta = 90.0 + erotus;
+    private int vastustajaLyo() {
+        int uusiSuunta = 0;
+        int erotus = 0;
+        if (this.suunta < 90) {
+            erotus = 90 - this.suunta;
+            uusiSuunta = 90 + erotus;
         } else {
-            erotus = 360.0 - this.suunta;
-            uusiSuunta = 180.0 + erotus;
+            erotus = 360 - this.suunta;
+            uusiSuunta = 180 + erotus;
         }
         return uusiSuunta;
-    }
-    
+    }   
 }
