@@ -4,7 +4,7 @@ package pong2014.logiikka;
  *
  * @author joonaslaakkonen
  */
-class Pelaaja {
+public class Pelaaja {
     
     private Maila maila;
     private int pisteet;

@@ -4,7 +4,7 @@ package pong2014.logiikka;
  *
  * @author joonaslaakkonen
  */
-class Peli {
+public class Peli {
     
     private Kentta kentta;
     private Pelaaja pelaaja;
@@ -21,6 +21,7 @@ class Peli {
     
     
     public void aloita() {
+        
         this.pelataankoPeli();
         pallo = this.kentta.getPallo();
         
@@ -51,12 +52,7 @@ class Peli {
         this.pallo.uusiPallo(kumpiVoitti);
     }    
     
-    private void valikko() {
-        System.out.println("Piirretään alkuvalikko\nEnter pelaa ja Esc lopettaa");
-    }
-    
     private void pelataankoPeli() {
-        this.valikko();
         if (true) {
             this.pelataanko = true;
         } else {

@@ -4,7 +4,7 @@ package pong2014.logiikka;
  *
  * @author joonaslaakkonen
  */
-class Kentta {
+public class Kentta {
     
     private Pallo pallo;
     private double korkeus;
@@ -28,6 +28,13 @@ class Kentta {
             kummalle = 2.0;
         }
         return kummalle;
+    }
+    public double getLeveys() {
+        return this.leveys;
+    }
+    
+    public double getKorkeus() {
+        return this.korkeus;
     }
     
 }

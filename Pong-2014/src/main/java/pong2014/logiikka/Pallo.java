@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author joonaslaakkonen
  */
-class Pallo {
+public class Pallo {
     
     private double x;
     private double y;
