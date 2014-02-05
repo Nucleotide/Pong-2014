@@ -32,17 +32,17 @@ public class KenttaTest {
     @Test
     public void pisteOikeinVastustajalle() {
         Pallo pallo = this.kentta.getPallo();
-        pallo.setPaikka(-1.0);
-        double piste = this.kentta.kenellePiste();
-        assertEquals(1.0, piste, 0.0);
+        pallo.setPaikka(-1);
+        int piste = this.kentta.kenellePiste();
+        assertEquals(1, piste);
     }
     
     @Test
     public void pisteOikeinPelaajalle() {
         Pallo pallo = this.kentta.getPallo();
-        pallo.setPaikka(61.0);
-        double piste = this.kentta.kenellePiste();
-        assertEquals(2.0, piste, 0.0);        
+        pallo.setPaikka(61);
+        int piste = this.kentta.kenellePiste();
+        assertEquals(2, piste);        
     }
     
 }

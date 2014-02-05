@@ -20,7 +20,7 @@ public class VastustajaTest {
     
     @Before
     public void setUp() {
-        this.vastustaja = new Vastustaja(24.0);
+        this.vastustaja = new Vastustaja(24);
     }
 
     @Test
@@ -53,14 +53,14 @@ public class VastustajaTest {
             maila.liikuYlos();
         }        
         this.vastustaja.lyo(pallo);
-        double paikka = pallo.getX();
-        assertTrue(paikka != 61.0);
+        int paikka = pallo.getX();
+        assertTrue(paikka != 61);
     }
     
     @Test
     public void vastustajaEiOsuPalloon() {
         Pallo pallo = new Pallo();
-        pallo.setSuunta(350.0);
+        pallo.setSuunta(350);
         Maila maila = this.vastustaja.getMaila();
         for (int i = 0; i < 25; i++) {
             maila.liikuYlos();
@@ -69,8 +69,8 @@ public class VastustajaTest {
             pallo.liiku();
         }
         this.vastustaja.lyo(pallo);
-        double paikka = pallo.getX();
-        assertEquals(61.0, paikka, 0.0);
+        int paikka = pallo.getX();
+        assertEquals(61, paikka);
         
     }
     

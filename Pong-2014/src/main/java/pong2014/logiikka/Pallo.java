@@ -30,9 +30,9 @@ public class Pallo {
     }
     
     public void liiku() {
-        int radiaanit = (int) Math.toRadians(this.suunta);
-        int liikeX = (int)Math.cos(radiaanit);
-        int liikeY = (int)Math.sin(radiaanit) * -1;
+        double radiaanit = Math.toRadians(this.suunta);
+        int liikeX = (int) (Math.cos(radiaanit) * 10);
+        int liikeY = (int) (Math.sin(radiaanit) * -10);
         this.rajatapausLeveys(liikeX);
         this.rajatapausKorkeus(liikeY);
     }

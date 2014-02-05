@@ -25,200 +25,200 @@ public class PalloTest {
     
     @Test
     public void pallonAloitusPaikkaOikea(){
-        double x = this.pallo.getX();
-        double y = this.pallo.getY();
+        int x = this.pallo.getX();
+        int y = this.pallo.getY();
         
-        assertEquals(29.0, x, 0);
-        assertEquals(14.0, y, 0);
+        assertEquals(29, x);
+        assertEquals(14, y);
     }
     
     @Test
     public void pallollaOnAluksiSuunta() {
-        double suunta = this.pallo.getSuunta();
-        assertTrue("Suunta olemassa", suunta == 350.0 || suunta == 190.0);
+        int suunta = this.pallo.getSuunta();
+        assertTrue("Suunta olemassa", suunta == 350 || suunta == 190);
     }
     
     @Test
     public void uusiPallonAsettaaPaikanOikein() {
-        this.pallo.uusiPallo(1.0);
-        double x = this.pallo.getX();
-        double y = this.pallo.getY();
+        this.pallo.uusiPallo(1);
+        int x = this.pallo.getX();
+        int y = this.pallo.getY();
         
-        assertEquals(29.0, x, 0);
-        assertEquals(14.0, y, 0);
+        assertEquals(29, x);
+        assertEquals(14, y);
     }
     
     @Test
     public void suunnanAsetusMuuttaaSuuntaa() {
-        this.pallo.setSuunta(110.0);
-        double eka = this.pallo.getSuunta();
-        this.pallo.setSuunta(200.0);
-        double toka = this.pallo.getSuunta();
+        this.pallo.setSuunta(110);
+        int eka = this.pallo.getSuunta();
+        this.pallo.setSuunta(200);
+        int toka = this.pallo.getSuunta();
         assertTrue(eka != toka);
     }
     
     @Test
     public void pallonSuuntaOikeinJosPelaajaSaiPisteet() {
-        this.pallo.uusiPallo(2.0);
-        double suunta = this.pallo.getSuunta();
-        assertEquals(190.0, suunta, 0.0);
+        this.pallo.uusiPallo(2);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(190, suunta);
     }
     
     @Test
     public void pallonSuuntaOikeinJosVastustajaSaiPisteen() {
-        this.pallo.uusiPallo(1.0);
-        double suunta = this.pallo.getSuunta();
-        assertEquals(350.0, suunta, 0.0);        
+        this.pallo.uusiPallo(1);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(350, suunta);        
     }
     
     @Test
     public void pallonVoiAsettaaEriPaikkaan() {
-        this.pallo.setPaikka(3.0);
-        double paikka = this.pallo.getX();
-        assertEquals(3.0, paikka, 0.0);
+        this.pallo.setPaikka(3);
+        int paikka = this.pallo.getX();
+        assertEquals(3, paikka);
     }
     
     @Test
     public void palloEiLiikuUlosPelaajanPuoleltaIlmanTormaysTarkastusta() {
-        this.pallo.setPaikka(4.0);
-        this.pallo.setSuunta(180.0);
+        this.pallo.setPaikka(4);
+        this.pallo.setSuunta(180);
         for (int i = 0; i < 15; i++) {
             this.pallo.liiku();
         }
         
-        double paikka = this.pallo.getX();
-        assertEquals(2.0, paikka, 0.0);
+        int paikka = this.pallo.getX();
+        assertEquals(2, paikka);
     }
     
     @Test
     public void palloEiLiikuUlosVastustajanPuoleltaIlmanTormaysTarkastusta() {
-        this.pallo.setPaikka(55.0);
-        this.pallo.setSuunta(0.0);
+        this.pallo.setPaikka(55);
+        this.pallo.setSuunta(0);
         for (int i = 0; i < 15; i++) {
             this.pallo.liiku();
         }
         
-        double paikka = this.pallo.getX();
-        assertEquals(56.0, paikka, 0.0);
+        int paikka = this.pallo.getX();
+        assertEquals(56, paikka);
     }   
     
     @Test
     public void palloEiLiikuYlhaaltaPoisLaudalta() {
-        this.pallo.setSuunta(90.0);
+        this.pallo.setSuunta(90);
         for (int i = 0; i < 16; i++) {
             this.pallo.liiku();
         }
-        double paikka = this.pallo.getY();
-        assertEquals(0.0, paikka, 0.0);
+        int paikka = this.pallo.getY();
+        assertEquals(0, paikka);
     }
     
     @Test
     public void palloEiLiikuAlhaaltaPoisLaudalta() {
-        this.pallo.setSuunta(270.0);
+        this.pallo.setSuunta(270);
         for (int i = 0; i < 16; i++) {
             this.pallo.liiku();
         }
-        double paikka = this.pallo.getY();
-        assertEquals(28.0, paikka, 0.0);
+        int paikka = this.pallo.getY();
+        assertEquals(28, paikka);
     }    
     
     @Test
     public void seinastaKimpoaminenVaihtaaSuuntaa() {
-        double alku = this.pallo.getSuunta();
+        int alku = this.pallo.getSuunta();
         this.pallo.kimpoaSeinasta();
-        double uusi = this.pallo.getSuunta();
+        int uusi = this.pallo.getSuunta();
         assertTrue(alku != uusi);
     }
     
     @Test
     public void kimpoaminenPelaajanMailastaVaihtaaSuuntaa() {
-        double alku = this.pallo.getSuunta();
+        int alku = this.pallo.getSuunta();
         this.pallo.kimpoaMailasta(1);
-        double uusi = this.pallo.getSuunta();
+        int uusi = this.pallo.getSuunta();
         assertTrue(alku != uusi);        
     }
     
     @Test
     public void kimpoaminenVastustajanMailastaVaihtaaSuuntaa() {
-        double alku = this.pallo.getSuunta();
+        int alku = this.pallo.getSuunta();
         this.pallo.kimpoaMailasta(2);
-        double uusi = this.pallo.getSuunta();
+        int uusi = this.pallo.getSuunta();
         assertTrue(alku != uusi);        
     }    
     
     @Test
     public void pelaajaLyoAlhaaltaTulevaaPalloa() {
-        this.pallo.setSuunta(170.0);
+        this.pallo.setSuunta(170);
         this.pallo.kimpoaMailasta(1);
-        double suunta = this.pallo.getSuunta();
-        assertEquals(10.0 ,suunta, 0.0);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(10 ,suunta);
     }
 
     @Test
     public void pelaajaLyoYlhaaltaTulevaaPalloa() {
-        this.pallo.setSuunta(250.0);
+        this.pallo.setSuunta(250);
         this.pallo.kimpoaMailasta(1);
-        double suunta = this.pallo.getSuunta();
-        assertEquals(290.0 ,suunta, 0.0);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(290 ,suunta);
     }    
     
     @Test
     public void vastustajaLyoAlhaaltaTulevaaPalloa() {
-        this.pallo.setSuunta(80.0);
+        this.pallo.setSuunta(80);
         this.pallo.kimpoaMailasta(4);
-        double suunta = this.pallo.getSuunta();
-        assertEquals(100.0 ,suunta, 0.0);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(100 ,suunta);
     }
 
     @Test
     public void vastustajaLyoYlhaaltaTulevaaPalloa() {
-        this.pallo.setSuunta(350.0);
+        this.pallo.setSuunta(350);
         this.pallo.kimpoaMailasta(3);
-        double suunta = this.pallo.getSuunta();
-        assertEquals(190.0 ,suunta, 0.0);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(190 ,suunta);
     }       
     
     @Test
     public void seinaKimmotusYlhaallaVasemmalta() {
-        this.pallo.setSuunta(80.0);
+        this.pallo.setSuunta(80);
         for (int i = 0; i  < 20; i++) {
             this.pallo.liiku();            
         }
         this.pallo.kimpoaSeinasta();
-        double suunta = this.pallo.getSuunta();
-        assertEquals(280.0, suunta, 0.0);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(280, suunta);
     }
     
     @Test
     public void seinaKimmotusAlhaallaOikealta() {
-        this.pallo.setSuunta(260.0);
+        this.pallo.setSuunta(260);
         for (int i = 0; i  < 20; i++) {
             this.pallo.liiku();            
         }
         this.pallo.kimpoaSeinasta();
-        double suunta = this.pallo.getSuunta();
-        assertEquals(100.0, suunta, 0.0);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(100, suunta);
     }    
     
     @Test
     public void seinaKimmotusAlhaallaVasemmalta() {
-        this.pallo.setSuunta(280.0);
+        this.pallo.setSuunta(280);
         for (int i = 0; i  < 20; i++) {
             this.pallo.liiku();            
         }
         this.pallo.kimpoaSeinasta();
-        double suunta = this.pallo.getSuunta();
-        assertEquals(80.0, suunta, 0.0);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(80, suunta);
     }
     
     @Test
     public void seinaKimmotusYlhaallaOikealta() {
-        this.pallo.setSuunta(105.0);
+        this.pallo.setSuunta(105);
         for (int i = 0; i  < 20; i++) {
             this.pallo.liiku();            
         }
         this.pallo.kimpoaSeinasta();
-        double suunta = this.pallo.getSuunta();
-        assertEquals(255.0, suunta, 0.0);
+        int suunta = this.pallo.getSuunta();
+        assertEquals(255, suunta);
     }      
 }

@@ -20,7 +20,7 @@ public class PelaajaTest {
     
     @Before
     public void setUp() {
-        this.pelaaja = new Pelaaja(12.0);
+        this.pelaaja = new Pelaaja(12);
     }
     
     @Test
@@ -48,33 +48,35 @@ public class PelaajaTest {
     @Test
     public void pelaajaLiikuttaaMailaaYlos() {
         Maila pelaajanMaila = this.pelaaja.getMaila();
-        double paikka = pelaajanMaila.getPaikka();
+        int paikka = pelaajanMaila.getPaikka();
         this.pelaaja.liikutaMailaaYlos();
-        double uusiPaikka = pelaajanMaila.getPaikka();
-        assertEquals(11.0, uusiPaikka, 0);
+        int uusiPaikka = pelaajanMaila.getPaikka();
+        assertEquals(11, uusiPaikka);
+        assertFalse(uusiPaikka == paikka);
     }
     
     @Test
     public void pelaajaLiikuttaaMailaaAlas() {
         Maila pelaajanMaila = this.pelaaja.getMaila();
-        double paikka = pelaajanMaila.getPaikka();
+        int paikka = pelaajanMaila.getPaikka();
         this.pelaaja.liikutaMailaaAlas();
-        double uusiPaikka = pelaajanMaila.getPaikka();
-        assertEquals(13.0, uusiPaikka, 0);
+        int uusiPaikka = pelaajanMaila.getPaikka();
+        assertEquals(13, uusiPaikka);
+        assertFalse(uusiPaikka == paikka);
     }
     
     @Test
     public void pelaajaLyoPalloa() {
         Pallo pallo = new Pallo();
         this.pelaaja.lyo(pallo);
-        double paikka = pallo.getX();
-        assertTrue(paikka != -1.0);
+        int paikka = pallo.getX();
+        assertTrue(paikka != -1);
     }
     
     @Test
     public void pelaajaEiOsuPalloon() {
         Pallo pallo = new Pallo();
-        pallo.setSuunta(195.0);
+        pallo.setSuunta(195);
         Maila maila = this.pelaaja.getMaila();
         for (int i = 0; i < 15; i++) {
             maila.liikuYlos();
@@ -83,8 +85,8 @@ public class PelaajaTest {
             pallo.liiku();
         }
         this.pelaaja.lyo(pallo);
-        double paikka = pallo.getX();
-        assertEquals(-1.0, paikka, 0.0);
+        int paikka = pallo.getX();
+        assertEquals(-1, paikka);
         
     }
     
