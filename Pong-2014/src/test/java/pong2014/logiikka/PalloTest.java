@@ -61,14 +61,14 @@ public class PalloTest {
     public void pallonSuuntaOikeinJosPelaajaSaiPisteet() {
         this.pallo.uusiPallo(2);
         int suunta = this.pallo.getSuunta();
-        assertEquals(190, suunta);
+        assertEquals(350, suunta);
     }
     
     @Test
     public void pallonSuuntaOikeinJosVastustajaSaiPisteen() {
         this.pallo.uusiPallo(1);
         int suunta = this.pallo.getSuunta();
-        assertEquals(350, suunta);        
+        assertEquals(190, suunta);        
     }
     
     @Test
@@ -220,5 +220,13 @@ public class PalloTest {
         this.pallo.kimpoaSeinasta();
         int suunta = this.pallo.getSuunta();
         assertEquals(255, suunta);
-    }      
+    }  
+    
+    @Test
+    public void pallonKokoOnOikein() {
+        int kork = this.pallo.getKorkeus();
+        int lev = this.pallo.getLeveys();
+        assertEquals(20, kork);
+        assertEquals(20, lev);
+    }
 }

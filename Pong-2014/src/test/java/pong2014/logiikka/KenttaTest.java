@@ -39,4 +39,23 @@ public class KenttaTest {
         assertEquals(2, piste);        
     }
     
+    @Test
+    public void saakoKorkeudenOikein () {
+        int korkeus = this.kentta.getKorkeus();
+        assertEquals(350, korkeus);
+    }
+    
+    @Test
+    public void saakoLeveydenOikein() {
+        int leveys = this.kentta.getLeveys();
+        assertEquals(600, leveys);
+    }
+    
+    @Test
+    public void alaAnnaPistettaJosPalloOnKentalla() {
+        Pallo uusi = new Pallo();
+        int paikka = this.kentta.kenellePiste();
+        assertEquals(0, paikka);
+    }
+    
 }

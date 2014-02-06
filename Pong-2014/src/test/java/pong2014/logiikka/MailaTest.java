@@ -71,4 +71,12 @@ public class MailaTest {
         assertEquals(50, paikkaLopuksi);
     }
     
+    @Test
+    public void mailanKokoOnHaluttu() {
+        int lev = this.pelaajanMaila.getLeveys();
+        int kork = this.pelaajanMaila.getKorkeus();
+        
+        assertEquals(20, lev);
+        assertEquals(60, kork);
+    } 
 }

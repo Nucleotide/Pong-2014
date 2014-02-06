@@ -61,9 +61,9 @@ public class Pallo {
         this.x = 390;
         this.y = 215;
         if (suunta == 1) {
-            this.setSuunta(350);
-        } else {
             this.setSuunta(190);
+        } else if (suunta == 2){
+            this.setSuunta(350);
         }
     }
     
@@ -78,7 +78,7 @@ public class Pallo {
     private void alunSuunta(int alkuSuunta) {
         if (alkuSuunta == 1) {
             this.setSuunta(350);
-        } else {
+        } else if (alkuSuunta == 0){
             this.setSuunta(190);
         }
     }
@@ -114,13 +114,13 @@ public class Pallo {
     private int seinakimmotuksenSuunta() {
         int uusiSuunta = 0;
         int erotus = 0;
-        if (this.y == 0 && this.suunta < 90) {
+        if (this.y == 0 && this.suunta < 90 && this.suunta >= 0) {
             erotus = 90 - this.suunta;
             uusiSuunta = 270 + erotus ;
         } else if (this.y == 0 && this.suunta < 180 && this.suunta > 90) {
             erotus = 180 - this.suunta;
             uusiSuunta = 180 + erotus;
-        } else if (this.y == 28 && this.suunta > 270) {
+        } else if (this.y == 400 && this.suunta > 270 && this.suunta <= 360 ) {
             erotus = this.suunta - 270;
             uusiSuunta = 90 - erotus;
         } else {
@@ -133,7 +133,7 @@ public class Pallo {
     private int pelaajaLyo() {
         int uusiSuunta = 0;
         int erotus = 0;
-        if (this.suunta > 180) {
+        if (this.suunta >= 180 && this.suunta <= 360) {
             erotus = 270 - this.suunta;
             uusiSuunta = 270 + erotus;
         } else {
@@ -146,7 +146,7 @@ public class Pallo {
     private int vastustajaLyo() {
         int uusiSuunta = 0;
         int erotus = 0;
-        if (this.suunta < 90) {
+        if (this.suunta < 90 && this.suunta >= 0) {
             erotus = 90 - this.suunta;
             uusiSuunta = 90 + erotus;
         } else {

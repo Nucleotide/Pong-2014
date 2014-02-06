@@ -76,4 +76,16 @@ public class VastustajaTest {
         assertEquals(750, paikka);        
     }
     
+    @Test
+    public void vastustajanMailaaHalutaanLiikuttaaYlös() {
+        Maila maila = this.vastustaja.getMaila();
+        this.vastustaja.liikutaMailaa();
+        
+        int paikka = maila.getPaikka();
+        this.vastustaja.liikutaMailaa();
+        int paikkaLopuksi = maila.getPaikka();
+        
+        assertTrue(paikka != paikkaLopuksi);
+    }
+    
 }
