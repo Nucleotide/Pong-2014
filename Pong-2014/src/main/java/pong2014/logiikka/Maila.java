@@ -12,23 +12,31 @@ public class Maila {
 
     public Maila(int paikka) {
         this.paikka = paikka;
-        this.korkeus = 6;
-        this.leveys = 2;
+        this.korkeus = 60;
+        this.leveys = 20;
     }
     
     public void liikuAlas() {
-        if (this.paikka < 24) {
+        if (this.paikka < 340) {
             this.paikka++;
         }
     }
     
     public void liikuYlos() {
-        if (this.paikka > 0) {
+        if (this.paikka > 50) {
             this.paikka--;
         }
     }
     
     public int getPaikka() {
         return this.paikka;
+    }
+    
+    public int getLeveys() {
+        return this.leveys;
+    }
+    
+    public int getKorkeus() {
+        return this.korkeus;
     }
 }

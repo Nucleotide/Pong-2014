@@ -19,57 +19,53 @@ public class Peli extends Timer implements ActionListener {
     private Paivitettava paivitettava;
     
     public Peli() {
-        super(1000, null);
+        super(150, null);
         this.kentta = new Kentta();
-        this.vastustaja = new Vastustaja(24);
-        this.pelaaja = new Pelaaja(12);
+        this.vastustaja = new Vastustaja(195);
+        this.pelaaja = new Pelaaja(195);
         this.pelataanko = true;
+        
+        addActionListener(this);
+        setInitialDelay(2000);
     }
     
-    
-    public void aloita() {
-        
-        this.pelataankoPeli();
-        pallo = this.kentta.getPallo();
-        
-        
-        while (this.pelataanko) {
-            if (!this.voittaja()) {
-                this.pelaaPallo();
-            } else {
-                break;
-            }
-        this.pelataankoPeli();
-        }
-    }
-    private void pelaaPallo() {
-        while (this.pallo.getX() > 2 && this.pallo.getX() < 56) {
-            this.pallo.liiku();
-            this.vastustaja.liikutaMailaa();
-            
-            if (this.kimpoanko()) {
-                this.pallo.kimpoaSeinasta();
-            } else if(pallo.getX() == 2) {
-                this.pelaaja.lyo(this.pallo);
-            } else if (pallo.getX() == 56) {
-                this.vastustaja.lyo(this.pallo);
-            }
-        }
-        int kumpiVoitti = this.kentta.kenellePiste();
-        this.pallo.uusiPallo(kumpiVoitti);
-    }    
-    
-    private void pelataankoPeli() {
-        if (true) {
-            this.pelataanko = true;
-        } else {
-            this.pelataanko = false;
-        }
-    }
     public void setPaivitettava(Paivitettava paivitettava) {
         this.paivitettava = paivitettava;
-    }    
+    }     
+    
+    public boolean jatkuu() {
+        return this.pelataanko;
+    }      
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.pallo = this.kentta.getPallo();
+        if (!this.jatkuu()) {
+            return;
+        }
+        
+        this.pallo.liiku();
+        this.vastustaja.liikutaMailaa();
+        
+        if (this.kimpoanko()) {
+            this.pallo.kimpoaSeinasta();
+        } else if(pallo.getX() == 120) {
+            this.pelaaja.lyo(this.pallo);
+        } else if (pallo.getX() == 680) {
+            this.vastustaja.lyo(this.pallo);
+        }
+        
+        if (this.voittaja()) {
+            this.pelataanko = false;
+        }
+        
+        if (this.kentta.kenellePiste() != 0) {
+            this.pallo.uusiPallo(this.kentta.kenellePiste());
+        }
+
+        this.paivitettava.paivita();   
+    }
+    
     private boolean voittaja() {
         if (this.pelaaja.kerroPisteet() > 9 || this.vastustaja.kerroPisteet() > 9) {
             return true;
@@ -78,16 +74,20 @@ public class Peli extends Timer implements ActionListener {
     }
 
     private boolean kimpoanko() {
-        if (this.pallo.getY() == 0 && this.pallo.getX() != 2) {
+        if (this.pallo.getY() == 50 && this.pallo.getX() != 120) {
             return true;
-        } else if (this.pallo.getY() == 28 && this.pallo.getX() != 2) {
+        } else if (this.pallo.getY() == 400 && this.pallo.getX() != 120) {
             return true;
-        } else if (this.pallo.getY() == 0 && this.pallo.getX() != 56) {
+        } else if (this.pallo.getY() == 50 && this.pallo.getX() != 680) {
             return true;
-        } else if (this.pallo.getY() == 28 && this.pallo.getX() != 56) {
+        } else if (this.pallo.getY() == 400 && this.pallo.getX() != 680) {
             return true;
         }
         return false;
+    }    
+
+    public void tauko() {
+        
     }
     
     public Kentta getKentta() {
@@ -98,21 +98,7 @@ public class Peli extends Timer implements ActionListener {
         return this.pelaaja;
     }
     
-    public Vastustaja getVastusta() {
+    public Vastustaja getVastustaja() {
         return this.vastustaja;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void lopeta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void tauko() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }      
 }

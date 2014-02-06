@@ -12,8 +12,8 @@ public class Kentta {
     
     public Kentta() {
         this.pallo = new Pallo();
-        this.korkeus = 30;
-        this.leveys = 60;
+        this.korkeus = 350;
+        this.leveys = 600;
     }
     
     public Pallo getPallo() {
@@ -22,10 +22,12 @@ public class Kentta {
 
     public int kenellePiste() {
         int kummalle = 0;
-        if (this.pallo.getX() < 2) {
+        if (this.pallo.getX() < 100) {
             kummalle = 1;
-        } else if (this.pallo.getX() > 58){
+        } else if (this.pallo.getX() > 700){
             kummalle = 2;
+        } else {
+            kummalle = 0;
         }
         return kummalle;
     }

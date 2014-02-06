@@ -1,5 +1,6 @@
 package pong2014.ui;
  
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -20,12 +21,12 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("Pong");
-        int leveys = this.peli.getKentta().getLeveys()*100;
-        int korkeus = this.peli.getKentta().getKorkeus()*100;
-         
-        frame.setPreferredSize(new Dimension(leveys, korkeus));
+
+        frame.setPreferredSize(new Dimension(800, 450));
+        frame.setResizable(false);
  
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setBackground(Color.BLACK);
  
         luoKomponentit(frame.getContentPane());
         lisaaKuuntelijat();

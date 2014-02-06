@@ -23,11 +23,15 @@ public class Nappaimistonkuuntelija implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.peli.aloita();
+            //tähän restart
         } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            this.peli.lopeta();
-        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+            System.exit(0);
+        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             this.peli.tauko();
+        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+            this.peli.getPelaaja().getMaila().liikuYlos();
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            this.peli.getPelaaja().getMaila().liikuAlas();            
         }
     }
 

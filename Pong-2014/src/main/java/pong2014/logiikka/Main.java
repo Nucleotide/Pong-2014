@@ -23,6 +23,6 @@ public class Main {
 }
 
             peli.setPaivitettava(ui.getPaivitettava());
-            peli.aloita();
+            peli.start();
     }
 }

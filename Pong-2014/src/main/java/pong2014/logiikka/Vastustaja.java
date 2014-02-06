@@ -8,10 +8,12 @@ public class Vastustaja {
     
     private Maila maila;
     private int pisteet;
+    private int suuntain;
     
     public Vastustaja(int paikka) {
         this.maila = new Maila(paikka);
         this.pisteet = 0;
+        this.suuntain = 1;
     }
     
     public int kerroPisteet() {
@@ -25,29 +27,26 @@ public class Vastustaja {
     }
     
     public void liikutaMailaa() {
-        int suuntain = 1;
-        while (true) {
-            if (suuntain == 1) {
-                for (int i = 0; i < 24; i++) {
-                    this.maila.liikuYlos();
-                }
-                suuntain = 0;
-            } else if (suuntain == 0) {
-                for (int i = 0; i < 24; i++) {
-                    this.maila.liikuAlas();
-                }
-                suuntain = 1;
-            }
-        }
+        if (suuntain == 1 && this.maila.getPaikka() > 50 ) {
+            this.maila.liikuYlos();
+        } else if (this.maila.getPaikka() <= 50) {
+            suuntain = 0;
+            this.maila.liikuAlas();
+        } else if (suuntain == 0 && this.maila.getPaikka() < 340) {
+            this.maila.liikuAlas();
+        } else if (this.maila.getPaikka() >= 340) {
+            suuntain = 1;
+            this.maila.liikuYlos();      
+        }     
     }
 
     public void lyo(Pallo pallo) {
         int korkeus = pallo.getY();
         int mailanSijainti = this.maila.getPaikka();
-        if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 6) {
+        if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 60) {
             pallo.kimpoaMailasta(0);
         } else {
-            pallo.setPaikka(61);
+            pallo.setPaikka(780);
         }
     }
     

@@ -11,11 +11,15 @@ public class Pallo {
     private int x;
     private int y;
     private int suunta;
+    private int korkeus;
+    private int leveys;
     
     
     public Pallo() {
-        this.x = 29;
-        this.y = 14;
+        this.x = 390;
+        this.y = 215;
+        this.korkeus = 20;
+        this.leveys = 20;
         Random random = new Random();
         int alkuSuunta = random.nextInt(2);
         this.alunSuunta(alkuSuunta);
@@ -46,8 +50,8 @@ public class Pallo {
     }
     
     public void uusiPallo(int suunta) {
-        this.x = 29;
-        this.y = 14;
+        this.x = 390;
+        this.y = 215;
         if (suunta == 1) {
             this.setSuunta(350);
         } else {
@@ -72,20 +76,20 @@ public class Pallo {
     }
 
     private void rajatapausLeveys(int liikeX) {
-        if (this.x + liikeX <= 2) {
-            this.x = 2;
-        } else if (this.x + liikeX >= 56) {
-            this.x = 56;
+        if (this.x + liikeX <= 110) {
+            this.x = 110;
+        } else if (this.x + liikeX >= 680) {
+            this.x = 680;
         } else {
             this.x += liikeX;
         }
     }
 
     private void rajatapausKorkeus(int liikeY) {
-        if (this.y + liikeY <= 0) {
-            this.y = 0;
-        } else if (this.y + liikeY >= 28) {
-            this.y = 28;
+        if (this.y + liikeY <= 50) {
+            this.y = 50;
+        } else if (this.y + liikeY >= 400) {
+            this.y = 400;
         } else {
             this.y += liikeY;
         }
@@ -143,4 +147,12 @@ public class Pallo {
         }
         return uusiSuunta;
     }   
+    
+    public int getLeveys() {
+        return this.leveys;
+    }
+    
+    public int getKorkeus() {
+        return this.korkeus;
+    }
 }
