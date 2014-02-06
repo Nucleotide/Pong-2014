@@ -24,15 +24,9 @@ public class KenttaTest {
     }
     
     @Test
-    public void kenttaLuoPallon() {
-        Pallo pallo = this.kentta.getPallo();
-        assertNotNull(pallo);
-    }
-    
-    @Test
     public void pisteOikeinVastustajalle() {
         Pallo pallo = this.kentta.getPallo();
-        pallo.setPaikka(-1);
+        pallo.setPaikka(50);
         int piste = this.kentta.kenellePiste();
         assertEquals(1, piste);
     }
@@ -40,7 +34,7 @@ public class KenttaTest {
     @Test
     public void pisteOikeinPelaajalle() {
         Pallo pallo = this.kentta.getPallo();
-        pallo.setPaikka(61);
+        pallo.setPaikka(750);
         int piste = this.kentta.kenellePiste();
         assertEquals(2, piste);        
     }

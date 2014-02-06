@@ -38,7 +38,7 @@ public class Pelaaja {
         if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 60) {
             pallo.kimpoaMailasta(1);
         } else {
-            pallo.setPaikka(0);
+            pallo.setPaikka(50);
         }
     }
     

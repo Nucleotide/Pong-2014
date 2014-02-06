@@ -60,7 +60,7 @@ public class Peli extends Timer implements ActionListener {
         }
         
         if (this.kentta.kenellePiste() != 0) {
-            this.pallo.uusiPallo(this.kentta.kenellePiste());
+            uusiPallojaPiste();
         }
 
         this.paivitettava.paivita();   
@@ -101,4 +101,15 @@ public class Peli extends Timer implements ActionListener {
     public Vastustaja getVastustaja() {
         return this.vastustaja;
     }      
+
+    private void uusiPallojaPiste() {
+        int piste = this.kentta.kenellePiste();
+        if (piste == 1) {
+            this.vastustaja.lisaaPiste();
+        } else if (piste == 2) {
+            this.vastustaja.lisaaPiste();
+        }
+        
+        this.pallo.uusiPallo(piste);
+    }
 }

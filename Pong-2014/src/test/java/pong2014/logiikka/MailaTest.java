@@ -21,54 +21,54 @@ public class MailaTest {
     
     @Before
     public void setUp() {
-        this.pelaajanMaila = new Maila(12);
-        this.vastustajanMaila = new Maila(24);
+        this.pelaajanMaila = new Maila(195);
+        this.vastustajanMaila = new Maila(195);
     }
 
     @Test
     public void onkoPelaajanMailanPaikkaOikeaAlussa() {
         int paikka = this.pelaajanMaila.getPaikka();
-        assertEquals(12, paikka);
+        assertEquals(195, paikka);
     }
     
     @Test
     public void onkoVastustajanMailanPaikkaOikeaAlussa() {
         int paikka = this.vastustajanMaila.getPaikka();
-        assertEquals(24, paikka); 
+        assertEquals(195, paikka); 
     }
     
     @Test
     public void liikutaMailaaYlos() {
         this.pelaajanMaila.liikuYlos();
         int mailanPaikkaLopuksi = this.pelaajanMaila.getPaikka();
-        assertEquals(11, mailanPaikkaLopuksi);
+        assertEquals(194, mailanPaikkaLopuksi);
     }
     
     @Test
     public void liikutaMailaaAlas() {
         this.pelaajanMaila.liikuAlas();
         int mailanPaikkaLopuksi = this.pelaajanMaila.getPaikka();
-        assertEquals(13, mailanPaikkaLopuksi);
+        assertEquals(196, mailanPaikkaLopuksi);
     }
     
     @Test
     public void mailaaEiVoiLiikuttaaAlasKentanUlkopuolelle() {
-        Maila alas = new Maila(12);
+        Maila alas = new Maila(330);
         for (int i=0;i<20; i++) {
             alas.liikuAlas();
         }
         int paikkaLopuksi = alas.getPaikka();
-        assertEquals(24, paikkaLopuksi);
+        assertEquals(340, paikkaLopuksi);
     }
     
     @Test
     public void mailaaEiVoiLiikuttaaYlosKentanUlkopuolelle() {
-        Maila ylos = new Maila(12);
+        Maila ylos = new Maila(60);
         for (int i=0;i<20; i++) {
             ylos.liikuYlos();
         }
         int paikkaLopuksi = ylos.getPaikka();
-        assertEquals(0, paikkaLopuksi);
+        assertEquals(50, paikkaLopuksi);
     }
     
 }

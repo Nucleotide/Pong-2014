@@ -46,7 +46,7 @@ public class Vastustaja {
         if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 60) {
             pallo.kimpoaMailasta(0);
         } else {
-            pallo.setPaikka(780);
+            pallo.setPaikka(750);
         }
     }
     

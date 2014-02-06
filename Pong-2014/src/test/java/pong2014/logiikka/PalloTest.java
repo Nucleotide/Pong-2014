@@ -28,8 +28,8 @@ public class PalloTest {
         int x = this.pallo.getX();
         int y = this.pallo.getY();
         
-        assertEquals(29, x);
-        assertEquals(14, y);
+        assertEquals(390, x);
+        assertEquals(215, y);
     }
     
     @Test
@@ -44,8 +44,8 @@ public class PalloTest {
         int x = this.pallo.getX();
         int y = this.pallo.getY();
         
-        assertEquals(29, x);
-        assertEquals(14, y);
+        assertEquals(390, x);
+        assertEquals(215, y);
     }
     
     @Test
@@ -73,53 +73,53 @@ public class PalloTest {
     
     @Test
     public void pallonVoiAsettaaEriPaikkaan() {
-        this.pallo.setPaikka(3);
+        this.pallo.setPaikka(50);
         int paikka = this.pallo.getX();
-        assertEquals(3, paikka);
+        assertEquals(50, paikka);
     }
     
     @Test
     public void palloEiLiikuUlosPelaajanPuoleltaIlmanTormaysTarkastusta() {
-        this.pallo.setPaikka(4);
+        this.pallo.setPaikka(130);
         this.pallo.setSuunta(180);
         for (int i = 0; i < 15; i++) {
             this.pallo.liiku();
         }
         
         int paikka = this.pallo.getX();
-        assertEquals(2, paikka);
+        assertEquals(120, paikka);
     }
     
     @Test
     public void palloEiLiikuUlosVastustajanPuoleltaIlmanTormaysTarkastusta() {
-        this.pallo.setPaikka(55);
+        this.pallo.setPaikka(670);
         this.pallo.setSuunta(0);
         for (int i = 0; i < 15; i++) {
             this.pallo.liiku();
         }
         
         int paikka = this.pallo.getX();
-        assertEquals(56, paikka);
+        assertEquals(680, paikka);
     }   
     
     @Test
     public void palloEiLiikuYlhaaltaPoisLaudalta() {
         this.pallo.setSuunta(90);
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 200; i++) {
             this.pallo.liiku();
         }
         int paikka = this.pallo.getY();
-        assertEquals(0, paikka);
+        assertEquals(50, paikka);
     }
     
     @Test
     public void palloEiLiikuAlhaaltaPoisLaudalta() {
         this.pallo.setSuunta(270);
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 200; i++) {
             this.pallo.liiku();
         }
         int paikka = this.pallo.getY();
-        assertEquals(28, paikka);
+        assertEquals(400, paikka);
     }    
     
     @Test

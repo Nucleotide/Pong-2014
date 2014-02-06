@@ -20,7 +20,7 @@ public class PelaajaTest {
     
     @Before
     public void setUp() {
-        this.pelaaja = new Pelaaja(12);
+        this.pelaaja = new Pelaaja(195);
     }
     
     @Test
@@ -51,7 +51,7 @@ public class PelaajaTest {
         int paikka = pelaajanMaila.getPaikka();
         this.pelaaja.liikutaMailaaYlos();
         int uusiPaikka = pelaajanMaila.getPaikka();
-        assertEquals(11, uusiPaikka);
+        assertEquals(194, uusiPaikka);
         assertFalse(uusiPaikka == paikka);
     }
     
@@ -61,16 +61,23 @@ public class PelaajaTest {
         int paikka = pelaajanMaila.getPaikka();
         this.pelaaja.liikutaMailaaAlas();
         int uusiPaikka = pelaajanMaila.getPaikka();
-        assertEquals(13, uusiPaikka);
+        assertEquals(196, uusiPaikka);
         assertFalse(uusiPaikka == paikka);
     }
     
     @Test
     public void pelaajaLyoPalloa() {
         Pallo pallo = new Pallo();
+        pallo.setPaikka(130);
+        for (int j = 0; j < 30; j++) {
+            pallo.liiku();
+        }
+        int suunta = pallo.getSuunta();
         this.pelaaja.lyo(pallo);
+        int uusiSuunta = pallo.getSuunta();
         int paikka = pallo.getX();
-        assertTrue(paikka != -1);
+        assertTrue(paikka != 50);
+        assertTrue(suunta != uusiSuunta);
     }
     
     @Test
@@ -78,15 +85,16 @@ public class PelaajaTest {
         Pallo pallo = new Pallo();
         pallo.setSuunta(195);
         Maila maila = this.pelaaja.getMaila();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 100; i++) {
             maila.liikuYlos();
         }
-        for (int j = 0; j < 30; j++) {
+        pallo.setPaikka(130);
+        for (int j = 0; j < 10; j++) {
             pallo.liiku();
         }
         this.pelaaja.lyo(pallo);
         int paikka = pallo.getX();
-        assertEquals(-1, paikka);
+        assertEquals(50, paikka);
         
     }
     

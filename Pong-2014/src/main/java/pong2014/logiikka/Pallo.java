@@ -76,8 +76,8 @@ public class Pallo {
     }
 
     private void rajatapausLeveys(int liikeX) {
-        if (this.x + liikeX <= 110) {
-            this.x = 110;
+        if (this.x + liikeX <= 120) {
+            this.x = 120;
         } else if (this.x + liikeX >= 680) {
             this.x = 680;
         } else {
