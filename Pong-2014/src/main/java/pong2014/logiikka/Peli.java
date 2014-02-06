@@ -112,7 +112,7 @@ public class Peli extends Timer implements ActionListener {
         if (piste == 1) {
             this.vastustaja.lisaaPiste();
         } else if (piste == 2) {
-            this.vastustaja.lisaaPiste();
+            this.pelaaja.lisaaPiste();
         }
         
         this.pallo.uusiPallo(piste);
