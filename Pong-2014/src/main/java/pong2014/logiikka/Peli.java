@@ -8,6 +8,7 @@ import pong2014.ui.Paivitettava;
 /**
  *
  * @author joonaslaakkonen
+ * Peli on ohjelman runko. Metodien avulla ohjelman suoritus etenee ja pelin pelaaminen tapahtuu käyttöliittymässä.
  */
 public class Peli extends Timer implements ActionListener {
     
@@ -65,7 +66,11 @@ public class Peli extends Timer implements ActionListener {
 
         this.paivitettava.paivita();   
     }
-    
+    /**
+     * 
+     * @return
+     * Metodi kertoo onko pelissä voittajaa, eli onko jompikumpi pelaajista saanut 10 pistettä.
+     */
     private boolean voittaja() {
         if (this.pelaaja.kerroPisteet() > 9 || this.vastustaja.kerroPisteet() > 9) {
             return true;

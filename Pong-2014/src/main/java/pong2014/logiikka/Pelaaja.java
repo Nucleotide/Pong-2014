@@ -3,6 +3,7 @@ package pong2014.logiikka;
 /**
  *
  * @author joonaslaakkonen
+ * Pelaaja on käyttäjän ilmentymä pelilaudalla. Pelaajalla on oma maila, jota hän liikuttaa pallon eteen.
  */
 public class Pelaaja {
     
@@ -31,7 +32,12 @@ public class Pelaaja {
     public void liikutaMailaaAlas() {
         this.maila.liikuAlas();
     }
-
+    /**
+     * 
+     * @param pallo
+     * Metodille annetaan parametrina pelin pallo, jota pelaaja yrittää lyödä. Mikäli pelaajan maila on pallon edessä
+     * lyönti onnistuu ja pallo kimpoaa takaisin pelilaudalle.
+     */
     void lyo(Pallo pallo) {
         int korkeus = pallo.getY();
         int mailanSijainti = this.maila.getPaikka();

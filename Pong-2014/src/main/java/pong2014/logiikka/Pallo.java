@@ -5,6 +5,8 @@ import java.util.Random;
 /**
  *
  * @author joonaslaakkonen
+ * Pallo on pelin keskeinen luokka. Pallo luo pelissä käytettävän pelipallon, joka liikkuu laudalla törmäillen
+ * seiniin ja pelaajan mailoihin.
  */
 public class Pallo {
     
@@ -32,7 +34,10 @@ public class Pallo {
     public int getY() {
         return this.y;
     }
-    
+    /**
+     * Metodi liikuttaa palloa pelin kutsuessa pallon liikettä. Metodi tarkastelee myös mahdolliset liikkumiset
+     * seinien ja mailojen lähellä.
+     */
     public void liiku() {
         double radiaanit = Math.toRadians(this.suunta);
         int liikeX = (int) (Math.cos(radiaanit) * 10);
@@ -40,7 +45,10 @@ public class Pallo {
         this.rajatapausLeveys(liikeX);
         this.rajatapausKorkeus(liikeY);
     }
-    
+    /**
+     * 
+     * @param uusiSuunta 
+     */
     public void setSuunta(int uusiSuunta) {
         this.suunta = uusiSuunta;
     }

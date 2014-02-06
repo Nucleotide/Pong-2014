@@ -3,6 +3,8 @@ package pong2014.logiikka;
 /**
  *
  * @author joonaslaakkonen
+ * Luokka Kentta ilmenee pelin pelilautana. Kentta luo pallon ja määrittää kuka saa pallon
+ * päätteeksi pisteen.
  */
 public class Kentta {
     
@@ -15,11 +17,17 @@ public class Kentta {
         this.korkeus = 350;
         this.leveys = 600;
     }
-    
+    /**
+     * 
+     * @return palauttaa Kentan luoman pallon. 
+     */
     public Pallo getPallo() {
         return this.pallo;
     }
-
+    /**
+     * 
+     * @return palauttaa tiedon kenelle edellisestä pallosta annetaan piste
+     */
     public int kenellePiste() {
         int kummalle = 0;
         if (this.pallo.getX() < 100) {
@@ -31,6 +39,7 @@ public class Kentta {
         }
         return kummalle;
     }
+
     public int getLeveys() {
         return this.leveys;
     }

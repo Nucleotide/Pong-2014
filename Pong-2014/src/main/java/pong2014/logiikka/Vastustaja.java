@@ -3,6 +3,8 @@ package pong2014.logiikka;
 /**
  *
  * @author joonaslaakkonen
+ * Vastustaja on käyttäjän vastustajana pelilaudalla. Vastustajalla on oma maila, jolla yritetään lyödä
+ * palloa.
  */
 public class Vastustaja {
     
@@ -25,7 +27,9 @@ public class Vastustaja {
             this.pisteet++;
         }    
     }
-    
+    /**
+     * Metodi liikuttaa Vastustajan mailaa pelin ohjaamana.
+     */
     public void liikutaMailaa() {
         if (suuntain == 1 && this.maila.getPaikka() > 50 ) {
             this.maila.liikuYlos();
