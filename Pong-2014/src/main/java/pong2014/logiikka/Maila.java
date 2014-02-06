@@ -38,5 +38,7 @@ public class Maila {
     
     public int getKorkeus() {
         return this.korkeus;
-    }
+    }  
 }
+
+
