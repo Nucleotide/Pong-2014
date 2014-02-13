@@ -18,6 +18,7 @@ public class Peli extends Timer implements ActionListener {
     private boolean pelataanko;
     private Pallo pallo;
     private Paivitettava paivitettava;
+    private boolean pause;
     
     /**
      * Konstruktori luo kentän, pelaajan ja vastustajan sekä asettaa aluksi pelataanko -arvon todeksi.
@@ -28,6 +29,7 @@ public class Peli extends Timer implements ActionListener {
         this.vastustaja = new Vastustaja(195);
         this.pelaaja = new Pelaaja(195);
         this.pelataanko = true;
+        this.pause = false;
         
         addActionListener(this);
         setInitialDelay(2000);
@@ -56,11 +58,11 @@ public class Peli extends Timer implements ActionListener {
         if (!this.jatkuu()) {
             return;
         }
-        
+
         this.pallo.liiku();
         this.vastustaja.liikutaMailaa();
         this.vastustaja.liikutaMailaa();
-        
+
         if (this.kimpoanko()) {
             this.pallo.kimpoaSeinasta();
         } else if(pallo.getX() == 120) {
@@ -68,16 +70,17 @@ public class Peli extends Timer implements ActionListener {
         } else if (pallo.getX() == 660) {
             this.vastustaja.lyo(this.pallo);
         }
-        
+
         if (this.voittaja()) {
             this.pelataanko = false;
         }
-        
+
         if (this.kentta.kenellePiste() != 0) {
             uusiPallojaPiste();
         }
 
         this.paivitettava.paivita();   
+
     }
     /**
      * 
@@ -109,7 +112,11 @@ public class Peli extends Timer implements ActionListener {
     }    
 
     public void tauko() {
-        
+        if (this.pause) {
+            this.pause = false;
+        } else {
+            this.pause = true;
+        }
     }
     
     public Kentta getKentta() {
