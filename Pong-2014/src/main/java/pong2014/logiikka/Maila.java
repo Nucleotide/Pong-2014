@@ -49,6 +49,10 @@ public class Maila {
     public int getKorkeus() {
         return this.korkeus;
     }  
+    
+    public void setPaikka(int paikka) {
+        this.paikka = paikka;
+    }
 }
 
 

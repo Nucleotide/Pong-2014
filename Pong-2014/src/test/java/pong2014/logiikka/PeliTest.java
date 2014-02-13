@@ -68,9 +68,30 @@ public class PeliTest {
     }
     
     @Test
-    public void palloEiSaaJosSeEiOsuSeinaan() {
+    public void palloEiSaaKimmotaJosSeEiOsuSeinaan() {
         Pallo pallo = this.peli.getPallo();
         pallo.setY(40);
         assertFalse(this.peli.kimpoanko());
+    }
+    
+    @Test
+    public void peliLoytaaVoittajan() {
+        Pelaaja pelaaja = this.peli.getPelaaja();
+        for (int i = 0; i < 11; i++) {
+            pelaaja.lisaaPiste();
+        }
+        
+        assertTrue(this.peli.voittaja());  
+    }
+    
+    @Test
+    public void pelissaEiVoittajaaJosPisteetAlleKymmenen() {
+        Pelaaja pelaaja = this.peli.getPelaaja();
+        Vastustaja vastustaja = this.peli.getVastustaja();
+        
+        pelaaja.lisaaPiste();
+        vastustaja.lisaaPiste();
+        
+        assertFalse(this.peli.voittaja());
     }
 }

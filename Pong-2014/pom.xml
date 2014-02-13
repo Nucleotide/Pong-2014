@@ -44,10 +44,20 @@
                 <version>0.30</version>
                     <configuration>
                     <targetClasses>
-                        <param>pong2014.logiikka.*</param>
+                        <param>pong2014.logiikka.Kentta</param>
+                        <param>pong2014.logiikka.Maila</param>
+                        <param>pong2014.logiikka.Pallo</param>
+                        <param>pong2014.logiikka.Pelaaja</param>
+                        <param>pong2014.logiikka.Peli</param>
+                        <param>pong2014.logiikka.Vastustaja</param>
                     </targetClasses>
                     <targetTests>
-                        <param>pong2014.logiikka.*</param>
+                        <param>pong2014.logiikka.KenttaTest</param>
+                        <param>pong2014.logiikka.MailaTest</param>
+                        <param>pong2014.logiikka.PalloTest</param>
+                        <param>pong2014.logiikka.PelaajaTest</param>
+                        <param>pong2014.logiikka.PeliTest</param>
+                        <param>pong2014.logiikka.VastustajaTest</param>
                     </targetTests>
                 </configuration>
             </plugin>

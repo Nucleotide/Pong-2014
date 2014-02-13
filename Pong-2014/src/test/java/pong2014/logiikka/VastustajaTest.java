@@ -77,7 +77,7 @@ public class VastustajaTest {
     }
     
     @Test
-    public void vastustajanMailaaHalutaanLiikuttaaYlös() {
+    public void vastustajanMailaaHalutaanLiikuttaaYlos() {
         Maila maila = this.vastustaja.getMaila();
         this.vastustaja.liikutaMailaa();
         
@@ -86,6 +86,26 @@ public class VastustajaTest {
         int paikkaLopuksi = maila.getPaikka();
         
         assertTrue(paikka != paikkaLopuksi);
+    }
+    
+    @Test
+    public void vastustajanMailaaHalutaanLiikuttaaYlosII() {
+        Maila maila = this.vastustaja.getMaila();
+        maila.setPaikka(340);
+        this.vastustaja.liikutaMailaa();
+        int paikkaLopuksi = maila.getPaikka();
+        
+        assertTrue(339 == paikkaLopuksi);
+    }
+    
+    @Test
+    public void vastustajanMailaaHalutaanLiikuttaAlas() {
+        Maila maila = this.vastustaja.getMaila();
+        maila.setPaikka(50);
+        this.vastustaja.liikutaMailaa();
+        int paikkaLopuksi = maila.getPaikka();
+        
+        assertTrue(51 == paikkaLopuksi);
     }
     
 }

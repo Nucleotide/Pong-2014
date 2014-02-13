@@ -89,7 +89,7 @@ public class PelaajaTest {
             maila.liikuYlos();
         }
         pallo.setPaikka(130);
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < 13; j++) {
             pallo.liiku();
         }
         this.pelaaja.lyo(pallo);
