@@ -36,11 +36,8 @@ public class Kayttoliittyma implements Runnable {
     }
  
     public void luoKomponentit(Container container) {
-        container.add(this.alusta);
-        this.lisaaKuuntelijat();
-        
+        container.add(this.alusta);   
     }
- 
  
     public JFrame getFrame() {
         return frame;

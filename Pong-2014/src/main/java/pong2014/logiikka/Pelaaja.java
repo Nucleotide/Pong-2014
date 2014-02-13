@@ -37,12 +37,20 @@ public class Pelaaja {
      */
     public void liikutaMailaaYlos() {
         this.maila.liikuYlos();
+        this.maila.liikuYlos();
+        this.maila.liikuYlos();
+        this.maila.liikuYlos();
+        this.maila.liikuYlos();
     }
     
     /**
      * Liikutetaan pelaajan mailaa alaspäin pelilaudalla.
      */
     public void liikutaMailaaAlas() {
+        this.maila.liikuAlas();
+        this.maila.liikuAlas();
+        this.maila.liikuAlas();
+        this.maila.liikuAlas();
         this.maila.liikuAlas();
     }
     /**

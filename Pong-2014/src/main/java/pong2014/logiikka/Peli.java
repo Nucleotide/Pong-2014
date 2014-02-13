@@ -24,7 +24,7 @@ public class Peli extends Timer implements ActionListener {
      * Konstruktori luo kentän, pelaajan ja vastustajan sekä asettaa aluksi pelataanko -arvon todeksi.
      */
     public Peli() {
-        super(100, null);
+        super(40, null);
         this.kentta = new Kentta();
         this.vastustaja = new Vastustaja(195);
         this.pelaaja = new Pelaaja(195);

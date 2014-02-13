@@ -29,9 +29,9 @@ public class Nappaimistonkuuntelija implements KeyListener {
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             this.peli.tauko();
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            this.peli.getPelaaja().getMaila().liikuYlos();
+            this.peli.getPelaaja().liikutaMailaaYlos();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            this.peli.getPelaaja().getMaila().liikuAlas();            
+            this.peli.getPelaaja().liikutaMailaaAlas();
         }
     }
 
