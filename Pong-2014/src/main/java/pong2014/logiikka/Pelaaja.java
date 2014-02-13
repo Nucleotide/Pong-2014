@@ -10,6 +10,10 @@ public class Pelaaja {
     private Maila maila;
     private int pisteet;
     
+    /**
+     * 
+     * @param paikka määrittää minne kohtaan pelaajan luonnin yhtedessä hänen maila asetetaan.
+     */
     public Pelaaja(int paikka) {
         this.maila = new Maila(paikka);
         this.pisteet = 0;
@@ -19,16 +23,25 @@ public class Pelaaja {
         return this.pisteet;
     }
     
+    /**
+     * Metodi lisää pelaajalle pisteen mikäle pisteet ovat alle kymmenen.
+     */
     public void lisaaPiste() {
         if (this.pisteet < 10) {
             this.pisteet++;
         }    
     }
     
+    /**
+     * Liikutetaan pelaajan mailaa ylöspäin pelilaudalla.
+     */
     public void liikutaMailaaYlos() {
         this.maila.liikuYlos();
     }
     
+    /**
+     * Liikutetaan pelaajan mailaa alaspäin pelilaudalla.
+     */
     public void liikutaMailaaAlas() {
         this.maila.liikuAlas();
     }

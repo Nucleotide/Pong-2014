@@ -19,8 +19,11 @@ public class Peli extends Timer implements ActionListener {
     private Pallo pallo;
     private Paivitettava paivitettava;
     
+    /**
+     * Konstruktori luo kentän, pelaajan ja vastustajan sekä asettaa aluksi pelataanko -arvon todeksi.
+     */
     public Peli() {
-        super(150, null);
+        super(100, null);
         this.kentta = new Kentta();
         this.vastustaja = new Vastustaja(195);
         this.pelaaja = new Pelaaja(195);
@@ -28,31 +31,41 @@ public class Peli extends Timer implements ActionListener {
         
         addActionListener(this);
         setInitialDelay(2000);
+        this.pallo = this.kentta.getPallo();
     }
     
     public void setPaivitettava(Paivitettava paivitettava) {
         this.paivitettava = paivitettava;
     }     
     
+    /**
+     * 
+     * @return kertoo jatkuuko peli.
+     */
     public boolean jatkuu() {
         return this.pelataanko;
     }      
-
+    
+    /**
+     * 
+     * @param e Pelin runko joka looppaa ja tutkii pelin eri ehtoja ja suorittaa metodeja sen mukaisesti. Parametrina
+     * on käyttäjän syöte.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.pallo = this.kentta.getPallo();
         if (!this.jatkuu()) {
             return;
         }
         
         this.pallo.liiku();
         this.vastustaja.liikutaMailaa();
+        this.vastustaja.liikutaMailaa();
         
         if (this.kimpoanko()) {
             this.pallo.kimpoaSeinasta();
         } else if(pallo.getX() == 120) {
             this.pelaaja.lyo(this.pallo);
-        } else if (pallo.getX() == 680) {
+        } else if (pallo.getX() == 660) {
             this.vastustaja.lyo(this.pallo);
         }
         
@@ -71,21 +84,25 @@ public class Peli extends Timer implements ActionListener {
      * @return
      * Metodi kertoo onko pelissä voittajaa, eli onko jompikumpi pelaajista saanut 10 pistettä.
      */
-    private boolean voittaja() {
+    public boolean voittaja() {
         if (this.pelaaja.kerroPisteet() > 9 || this.vastustaja.kerroPisteet() > 9) {
             return true;
         }
         return false;
     }
-
-    private boolean kimpoanko() {
+    
+    /**
+     * Metodi tutkii onko pallo sijannissa, jossa sen kuuluu kimmota ja vaihtaa liikkeen suuntaa.
+     * @return kertoo kimmotaanko vai ei.
+     */
+    public boolean kimpoanko() {
         if (this.pallo.getY() == 50 && this.pallo.getX() != 120) {
             return true;
-        } else if (this.pallo.getY() == 400 && this.pallo.getX() != 120) {
+        } else if (this.pallo.getY() == 380 && this.pallo.getX() != 120) {
             return true;
-        } else if (this.pallo.getY() == 50 && this.pallo.getX() != 680) {
+        } else if (this.pallo.getY() == 50 && this.pallo.getX() != 660) {
             return true;
-        } else if (this.pallo.getY() == 400 && this.pallo.getX() != 680) {
+        } else if (this.pallo.getY() == 380 && this.pallo.getX() != 660) {
             return true;
         }
         return false;
@@ -105,8 +122,15 @@ public class Peli extends Timer implements ActionListener {
     
     public Vastustaja getVastustaja() {
         return this.vastustaja;
-    }      
-
+    }    
+    
+    public Pallo getPallo() {
+        return this.pallo;
+    }    
+    
+    /**
+     * Jos jompikumpi kilpalija saa pisteen, asetetaan pallon suunta asianmukaiseksi.
+     */
     private void uusiPallojaPiste() {
         int piste = this.kentta.kenellePiste();
         if (piste == 1) {

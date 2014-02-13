@@ -31,7 +31,7 @@ public class PeliTest {
     
     @Test
     public void peliSaaLiikutettuaPalloa() {
-        Pallo pallo = this.peli.getKentta().getPallo();
+        Pallo pallo = this.peli.getPallo();
         int alku = pallo.getX();
         pallo.liiku();
         int loppu = pallo.getX();
@@ -44,9 +44,33 @@ public class PeliTest {
         Kentta a = this.peli.getKentta();
         Pelaaja b = this.peli.getPelaaja();
         Vastustaja c = this.peli.getVastustaja();
+        Pallo d = this.peli.getPallo();
         
         assertNotNull(a);
         assertNotNull(b);
         assertNotNull(c);
+        assertNotNull(d);
+    }
+    
+    @Test
+    public void kentallaOnPallo() {
+        Pallo pallo = this.peli.getKentta().getPallo();
+        assertNotNull(pallo);
+    }
+    
+    @Test
+    public void peliLiikuttaaVastustajanMailaa() {
+        Maila maila = this.peli.getVastustaja().getMaila();
+        int a = maila.getPaikka();
+        this.peli.getVastustaja().liikutaMailaa();
+        int b = maila.getPaikka();
+        assertFalse(a == b);
+    }
+    
+    @Test
+    public void palloEiSaaJosSeEiOsuSeinaan() {
+        Pallo pallo = this.peli.getPallo();
+        pallo.setY(40);
+        assertFalse(this.peli.kimpoanko());
     }
 }

@@ -5,7 +5,7 @@ import pong2014.ui.Kayttoliittyma;
 
 /**
  *
- * @author joonaslaakkonen
+ * @author joonaslaakkonen Luokka Main käynnistää pelin ja luo käyttöliittymän.
  */
 public class Main {
     public static void main( String[] args ){
@@ -20,9 +20,9 @@ public class Main {
             } catch (InterruptedException ex) {
                 System.out.println("Piirtoalustaa ei ole vielä luotu.");
             }
-}
+        }
 
-            peli.setPaivitettava(ui.getPaivitettava());
-            peli.start();
+        peli.setPaivitettava(ui.getPaivitettava());
+        peli.start();
     }
 }

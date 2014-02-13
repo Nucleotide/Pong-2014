@@ -12,6 +12,9 @@ public class Kentta {
     private int korkeus;
     private int leveys;
     
+    /**
+     * Konstruktori luo uuden Kentan ja Pallon, sekä asettaa kentän korkeuden ja leveyden peliä varten.
+     */
     public Kentta() {
         this.pallo = new Pallo();
         this.korkeus = 350;
@@ -26,13 +29,14 @@ public class Kentta {
     }
     /**
      * 
-     * @return palauttaa tiedon kenelle edellisestä pallosta annetaan piste
+     * @return palauttaa tiedon kenelle edellisestä pallosta annetaan piste. Piste määritellään
+     * pallon sijainnin perusteella. arvolla 1 piste menee vastustajalle ja arvolla 2 psite menee pelaajalle.
      */
     public int kenellePiste() {
         int kummalle = 0;
-        if (this.pallo.getX() < 100) {
+        if (this.pallo.getX() == 50) {
             kummalle = 1;
-        } else if (this.pallo.getX() > 700){
+        } else if (this.pallo.getX() == 750){
             kummalle = 2;
         } else {
             kummalle = 0;

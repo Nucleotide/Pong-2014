@@ -12,23 +12,34 @@ public class Vastustaja {
     private int pisteet;
     private int suuntain;
     
+    /**
+     * 
+     * @param paikka asettaa konstruktorissa vastustajan mailan aloituspaikan.
+     */
     public Vastustaja(int paikka) {
         this.maila = new Maila(paikka);
         this.pisteet = 0;
         this.suuntain = 1;
     }
     
+    /**
+     * 
+     * @return kertoo vastustajan pistemäärän.
+     */
     public int kerroPisteet() {
         return this.pisteet;
     }
     
+    /**
+     * Lisätään piste vastustajalle jos niitä on alle kymmenen.
+     */
     public void lisaaPiste() {
         if (this.pisteet < 10) {
             this.pisteet++;
         }    
     }
     /**
-     * Metodi liikuttaa Vastustajan mailaa pelin ohjaamana.
+     * Metodi liikuttaa Vastustajan mailaa pelin ohjaamana. Suunta vaihtuu jos maila saavuttaa seinän.
      */
     public void liikutaMailaa() {
         if (suuntain == 1 && this.maila.getPaikka() > 50 ) {
@@ -43,7 +54,11 @@ public class Vastustaja {
             this.maila.liikuYlos();      
         }     
     }
-
+    
+    /**
+     * 
+     * @param pallo Lyönti onnistuu jos vastustajan maila on pallon tiellä.
+     */
     public void lyo(Pallo pallo) {
         int korkeus = pallo.getY();
         int mailanSijainti = this.maila.getPaikka();

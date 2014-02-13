@@ -11,7 +11,11 @@ public class Maila {
     private int paikka;
     private int korkeus;
     private int leveys;
-
+    
+    /**
+     * Luodaan maila,
+     * @param paikka kertoo minne kohtaan pelilautaa maila luodaan.
+     */
     public Maila(int paikka) {
         this.paikka = paikka;
         this.korkeus = 60;
