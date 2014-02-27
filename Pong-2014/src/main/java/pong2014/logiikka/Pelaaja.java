@@ -12,7 +12,8 @@ public class Pelaaja {
     
     /**
      * 
-     * @param paikka määrittää minne kohtaan pelaajan luonnin yhtedessä hänen maila asetetaan.
+     * @param paikka määrittää minne kohtaan pelaajan luonnin yhtedessä hänen maila asetetaan. Pelaajan
+     * pisteet ovat aluksi luonnollisesti nolla.
      */
     public Pelaaja(int paikka) {
         this.maila = new Maila(paikka);
@@ -45,20 +46,22 @@ public class Pelaaja {
      * Liikutetaan pelaajan mailaa ylöspäin pelilaudalla.
      */
     public void liikutaMailaaYlos() {
-        this.maila.liikuYlos();
+        this.maila.liikuYlos(10);
     }
     
     /**
      * Liikutetaan pelaajan mailaa alaspäin pelilaudalla.
      */
     public void liikutaMailaaAlas() {
-        this.maila.liikuAlas();
+        this.maila.liikuAlas(10);
     }
     /**
      * 
      * @param pallo
      * Metodille annetaan parametrina pelin pallo, jota pelaaja yrittää lyödä. Mikäli pelaajan maila on pallon edessä
-     * lyönti onnistuu ja pallo kimpoaa takaisin pelilaudalle.
+     * lyönti onnistuu ja pallo kimpoaa takaisin pelilaudalle. Metodissa huomioidaan myös tilanne joissa grafiikan
+     * piirtotavasta johtuen maila osuu palloon vaikka pallo olisikin koordinattien perusteella mailan yläpuolella
+     * pallon korkeuden verran.
      */
     public void lyo(Pallo pallo) {
         int korkeus = pallo.getY();

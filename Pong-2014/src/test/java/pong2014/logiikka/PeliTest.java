@@ -48,40 +48,60 @@ public class PeliTest {
     }
     
     @Test
-    public void peliLiikuttaaVastustajanMailaa() {
-        Maila maila = this.vastustaja.getMaila();
-        this.pallo.setY(56);
-        int a = maila.getPaikka();
-        this.vastustaja.liikutaMailaa(this.pallo);
-        int b = maila.getPaikka();
-        assertFalse(a == b);
+    public void eiVoittajaaJosPisteetAlleKymmenen() {
+        assertTrue(!this.peli.voittaja());
     }
     
     @Test
-    public void palloEiSaaKimmotaJosSeEiOsuSeinaan() {
-        this.pallo.setY(100);
-        this.pallo.setSuunta(15);
-        this.pallo.liiku();
-        assertTrue(this.pallo.getSuunta() == 15);
+    public void voittajaJosPisteitaKymmenen() {
+        for (int i = 0; i < 10; i++) {
+            this.pelaaja.lisaaPiste(); 
+        }        
+        assertTrue(this.peli.voittaja());
     }
     
     @Test
-    public void peliLoytaaVoittajan() {
-        Pelaaja pelaaja = this.peli.getPelaaja();
-        for (int i = 0; i < 11; i++) {
-            pelaaja.lisaaPiste();
-        }    
-        assertTrue(this.peli.voittaja());  
+    public void aluksiPeliEiOlePausella() {
+        assertTrue(this.peli.pause());
     }
     
     @Test
-    public void pelissaEiVoittajaaJosPisteetAlleKymmenen() {
-        Pelaaja pelaaja = this.peli.getPelaaja();
-        Vastustaja vastustaja = this.peli.getVastustaja();
+    public void peliMeneePauselle() {
+        this.peli.pause();
+        assertTrue(!this.peli.pause());
+    }
+    
+    @Test
+    public void peliKimmottaaPalloa() {
+        this.pallo.setY(50);
+        assertTrue(this.peli.kimpoanko());
+        this.pallo.setX(95);
+        assertFalse(this.peli.kimpoanko());
         
-        pelaaja.lisaaPiste();
-        vastustaja.lisaaPiste();
+        this.pallo.setX(155);
+        this.pallo.setY(380);
+        assertTrue(this.peli.kimpoanko());
+        this.pallo.setX(690);
+        assertFalse(this.peli.kimpoanko()); 
+    }
+    
+    @Test
+    public void pisteVastustajalle() {
+        this.pallo.setX(39);
+        assertTrue(this.kentta.kenellePiste() == 1);
+        this.peli.uusiPallojaPiste();
         
-        assertFalse(this.peli.voittaja());
+        assertTrue(this.vastustaja.kerroPisteet() == 1);
+        assertTrue(this.pallo.getSuunta() == 350);
+    }     
+    
+    @Test
+    public void pistePelaajalle() {
+        this.pallo.setX(741);
+        assertTrue(this.kentta.kenellePiste() == 2);
+        this.peli.uusiPallojaPiste();
+        
+        assertTrue(this.pelaaja.kerroPisteet() == 1);
+        assertTrue(this.pallo.getSuunta() == 190);
     }
 }

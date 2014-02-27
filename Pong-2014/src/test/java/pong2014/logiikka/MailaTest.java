@@ -39,14 +39,14 @@ public class MailaTest {
     
     @Test
     public void liikutaMailaaYlos() {
-        this.pelaajanMaila.liikuYlos();
+        this.pelaajanMaila.liikuYlos(1);
         int mailanPaikkaLopuksi = this.pelaajanMaila.getPaikka();
         assertEquals(194, mailanPaikkaLopuksi);
     }
     
     @Test
     public void liikutaMailaaAlas() {
-        this.pelaajanMaila.liikuAlas();
+        this.pelaajanMaila.liikuAlas(1);
         int mailanPaikkaLopuksi = this.pelaajanMaila.getPaikka();
         assertEquals(196, mailanPaikkaLopuksi);
     }
@@ -55,7 +55,7 @@ public class MailaTest {
     public void mailaaEiVoiLiikuttaaAlasKentanUlkopuolelle() {
         Maila alas = new Maila(330);
         for (int i=0;i<20; i++) {
-            alas.liikuAlas();
+            alas.liikuAlas(1);
         }
         int paikkaLopuksi = alas.getPaikka();
         assertEquals(340, paikkaLopuksi);
@@ -65,7 +65,7 @@ public class MailaTest {
     public void mailaaEiVoiLiikuttaaYlosKentanUlkopuolelle() {
         Maila ylos = new Maila(60);
         for (int i=0;i<20; i++) {
-            ylos.liikuYlos();
+            ylos.liikuYlos(1);
         }
         int paikkaLopuksi = ylos.getPaikka();
         assertEquals(50, paikkaLopuksi);

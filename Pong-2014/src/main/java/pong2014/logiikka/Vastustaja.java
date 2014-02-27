@@ -42,19 +42,24 @@ public class Vastustaja {
         }    
     }
     /**
-     * Metodi liikuttaa Vastustajan mailaa pelin ohjaamana. Suunta vaihtuu jos maila saavuttaa seinän.
+     * Metodi liikuttaa Vastustajan mailaa pelin ohjaamana. Logiikka on melko yksinkertainen ja vastustaja
+     * pyrkii aina liikkumaan ylös tai alas riippuen pelin pallon korkeudesta.
+     * @param pallo on pelin pallo.
      */
     public void liikutaMailaa(Pallo pallo) {
         if (pallo.getY() < this.maila.getPaikka()) {
-            this.maila.liikuYlos();
-        } else if (pallo.getY() + 50 > this.maila.getPaikka()) {
-            this.maila.liikuAlas();
+            this.maila.liikuYlos(5);
+        } else if (pallo.getY() > this.maila.getPaikka() + 60 ) {
+            this.maila.liikuAlas(5);
         }
+        
     }
     
     /**
      * 
-     * @param pallo Lyönti onnistuu jos vastustajan maila on pallon tiellä.
+     * @param pallo Lyönti onnistuu jos vastustajan maila on pallon tiellä. Metodissa huomioidaan myös tilanne joissa grafiikan
+     * piirtotavasta johtuen maila osuu palloon vaikka pallo olisikin koordinattien perusteella mailan yläpuolella
+     * pallon korkeuden verran.
      */
     public void lyo(Pallo pallo) {
         int korkeus = pallo.getY();

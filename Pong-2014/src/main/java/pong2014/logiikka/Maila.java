@@ -3,7 +3,7 @@ package pong2014.logiikka;
 /**
  *
  * @author joonaslaakkonen
- * Maila on pelaajan ilmentymä pelilaudalla. Mailaa voi liikuttaa y-akselin suunnassa. Tavoite on liikuttaa maila
+ * Maila on pelaajan ja vastustajan ilmentymä pelilaudalla. Mailaa voi liikuttaa y-akselin suunnassa. Tavoite on liikuttaa maila
  * pallon eteen pelin aikana.
  */
 public class Maila {
@@ -14,7 +14,7 @@ public class Maila {
     
     /**
      * Luodaan maila,
-     * @param paikka kertoo minne kohtaan pelilautaa maila luodaan.
+     * @param paikka kertoo minne kohtaan pelilautaa maila luodaan. Mailalla on myös korkeus ja leveys.
      */
     public Maila(int paikka) {
         this.paikka = paikka;
@@ -43,19 +43,25 @@ public class Maila {
     }
     
     /**
-     * Mailan liikuttaminen ylöspäin. Mailaa ei voi liikuttaa pois pelilaudalta.
+     * Mailan liikuttaminen ylöspäin. Mailaa ei voi liikuttaa pois pelilaudalta. Parametrina annetaan nopeus
+     * joka määrittää kuinka paljon maila liikkuu.
      */
-    public void liikuAlas() {
-        if (this.paikka < 340) {
-            this.paikka++;
+    public void liikuAlas(int nopeus) {
+        for (int i = 0; i < nopeus; i++) {
+            if (this.paikka < 340) {
+                this.paikka++;
+            }
         }
     }
     /**
-     * Mailan liikuttaminen alaspäin. Mailaa ei voi liikuttaa pois pelilaudalta.
+     * Mailan liikuttaminen alaspäin. Mailaa ei voi liikuttaa pois pelilaudalta. Parametrina annetaan nopeus
+     * joka määrittää kuinka paljon maila liikkuu.
      */
-    public void liikuYlos() {
-        if (this.paikka > 50) {
-            this.paikka--;
+    public void liikuYlos(int nopeus) {
+        for (int i = 0; i < nopeus; i++) {
+            if (this.paikka > 50) {
+                this.paikka--;
+            }
         }
     }
 }

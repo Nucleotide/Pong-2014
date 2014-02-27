@@ -54,7 +54,7 @@ public class PelaajaTest {
         int paikka = this.maila.getPaikka();
         this.pelaaja.liikutaMailaaYlos();
         int uusiPaikka = this.maila.getPaikka();
-        assertEquals(194, uusiPaikka);
+        assertEquals(185, uusiPaikka);
         assertFalse(uusiPaikka == paikka);
     }
     
@@ -63,7 +63,7 @@ public class PelaajaTest {
         int paikka = this.maila.getPaikka();
         this.pelaaja.liikutaMailaaAlas();
         int uusiPaikka = this.maila.getPaikka();
-        assertEquals(196, uusiPaikka);
+        assertEquals(205, uusiPaikka);
         assertFalse(uusiPaikka == paikka);
     }
     

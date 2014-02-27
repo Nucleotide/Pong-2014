@@ -84,7 +84,7 @@ public class VastustajaTest {
         this.maila.setPaikka(50);
         this.vastustaja.liikutaMailaa(this.pallo);
         
-        assertTrue(51 == this.maila.getPaikka());
+        assertTrue(55 == this.maila.getPaikka());
     }
     
     @Test
@@ -96,4 +96,31 @@ public class VastustajaTest {
         this.vastustaja.lyo(this.pallo);
         assertTrue(this.pallo.getSuunta() != 355);
     }    
+    
+    @Test
+    public void mailaEiLiikuYlosJosPalloEiOleYlempana() {
+        this.maila.setPaikka(65);
+        this.pallo.setY(70);
+        this.pallo.setSuunta(180);
+        this.pallo.liiku();
+        assertTrue(this.maila.getPaikka() == 65);
+    }
+    
+    @Test
+    public void mailaEiLiikuAlasJosPalloEiOleAlempana() {
+        this.maila.setPaikka(100);
+        this.pallo.setY(155);
+        this.pallo.setSuunta(180);
+        this.pallo.liiku();
+        assertTrue(this.maila.getPaikka() == 100);
+    }
+    
+    @Test
+    public void palloLiikkuuJosVastustajaEiOsuSiihen() {
+        this.pallo.setX(659);
+        this.pallo.setSuunta(0);
+        this.maila.setPaikka(51);
+        this.vastustaja.lyo(this.pallo);
+        assertTrue(this.pallo.getX() > 660);        
+    }
 }

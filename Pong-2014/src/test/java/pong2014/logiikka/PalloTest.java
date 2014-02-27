@@ -200,9 +200,16 @@ public class PalloTest {
     
     @Test
     public void pallonKokoOnOikein() {
-        int kork = this.pallo.getKorkeus();
-        int lev = this.pallo.getLeveys();
-        assertEquals(20, kork);
-        assertEquals(20, lev);
+        int koko = this.pallo.getKoko();
+        assertEquals(20, koko);
+    }
+    
+    @Test
+    public void uudenPallonSuuntaEiVoiOllaVaara() {
+        this.pallo.uusiPallo(1);
+        assertFalse(this.pallo.getSuunta() == 190);
+        
+        this.pallo.uusiPallo(2);
+        assertFalse(this.pallo.getSuunta() == 350);
     }
 }

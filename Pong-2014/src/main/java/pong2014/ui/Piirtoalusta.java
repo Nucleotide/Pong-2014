@@ -43,7 +43,7 @@ public class Piirtoalusta extends JPanel implements Paivitettava {
         g.fillRect(680, vastustajanMaila.getPaikka(), vastustajanMaila.getLeveys(), vastustajanMaila.getKorkeus());
         g.fillRect(100, 45, 600, 5);
         g.fillRect(100, 400, 600, 5); 
-        g.fillRect(pallo.getX(), pallo.getY(), pallo.getLeveys(), pallo.getKorkeus());
+        g.fillRect(pallo.getX(), pallo.getY(), pallo.getKoko(), pallo.getKoko());
         g.drawString("Pelaajan pisteet: " + this.peli.getPelaaja().kerroPisteet(), 100, 435);
         g.drawString("Vastustajan pisteet: " + this.peli.getVastustaja().kerroPisteet(), 565, 435);
         

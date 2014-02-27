@@ -13,9 +13,9 @@ public class Pallo {
     private int x;
     private int y;
     private int suunta;
-    private int korkeus;
-    private int leveys;
+    private int koko;;
     private int lyonti;
+    private int nopeus;
     
     /**
      * Konstruktori luo uuden pallon pelilaudan keskelle. Sen lisäksi pallon koko määritellään ja pallolle
@@ -24,9 +24,9 @@ public class Pallo {
     public Pallo() {
         this.x = 390;
         this.y = 215;
-        this.korkeus = 20;
-        this.leveys = 20;
+        this.koko = 20;;
         this.lyonti = 0;
+        this.nopeus = 10;
         Random random = new Random();
         int alkuSuunta = random.nextInt(2);
         this.alunSuunta(alkuSuunta);
@@ -52,10 +52,6 @@ public class Pallo {
     public void setY(int minne) {
         this.y = minne;
     } 
-        
-    public int getLeveys() {
-        return this.leveys;
-    }
     
     public int getLyonti() {
         return this.lyonti;
@@ -65,8 +61,8 @@ public class Pallo {
         this.lyonti = arvo;
     }
     
-    public int getKorkeus() {
-        return this.korkeus;
+    public int getKoko() {
+        return this.koko;
     }
     
     public void setSuunta(int uusiSuunta) {
@@ -79,12 +75,13 @@ public class Pallo {
     
     /**
      * Metodi liikuttaa palloa pelin kutsuessa pallon liikettä. Metodi tarkastelee myös mahdolliset liikkumiset
-     * seinien ja mailojen lähellä.
+     * seinien läheisyydessä apumetodilla rajataupausLeveys.
+     * Liike x ja y suuntaan lasketaan yksikköympyrän avulla pallon suunnan perusteella.
      */
     public void liiku() {
         double radiaanit = Math.toRadians(this.suunta);
-        int liikeX = (int) (Math.cos(radiaanit) * 10);
-        int liikeY = (int) (Math.sin(radiaanit) * -10);
+        int liikeX = (int) (Math.cos(radiaanit) * nopeus);
+        int liikeY = (int) (Math.sin(radiaanit) * -nopeus);
         this.rajatapausLeveys(liikeX);
         this.rajatapausKorkeus(liikeY);
     }
@@ -92,24 +89,40 @@ public class Pallo {
     /**
      * 
      * @param suunta määrää minne suuntaan pallo lähtee. uusiPallo -metodia kutsutaan kun pelaaja tai vastustaja
-     * on saanut pisteen ja pallo halutaan palauttaa pelilaudan keskelle.
+     * on saanut pisteen ja pallo halutaan palauttaa pelilaudan keskelle. Pallon vauhti palautetaan arvoon 10.
      */
     public void uusiPallo(int suunta) {
         this.x = 390;
         this.y = 215;
         if (suunta == 2) {
             this.setSuunta(190);
-        } else {
+            this.nopeus = 10;
+        } else if (suunta == 1) {
             this.setSuunta(350);
+            this.nopeus = 10;
         }
     }
     
     /**
-     * Pallolle asetetaan suunta kun se kimpoaa seinästä. Uusi suunta saadaan erillisestä metodista.
+     * Pallolle asetetaan suunta kun se kimpoaa seinästä. Uusi suunta saadaan erillisestä apumetodista
+     * seinakimmotuksenSuunta.
      */
     public void kimpoaSeinasta(){
         this.setSuunta(this.seinakimmotuksenSuunta());
     }
+    
+    /**
+     * 
+     * @param lyoja Metodi saa parametrina kumpi pelaajista yrittää lyödä palloa. Tämän jälkeen asetetaan
+     * pallon suunta lyöntiyrityksen perusteella.
+     */
+    public void kimpoaMailasta(int miten) {
+        if (miten == 1 || miten == 11) {
+            this.setSuunta(this.pelaajaLyo(miten));
+        } else if (miten == 2 || miten == 12) {
+            this.setSuunta(this.vastustajaLyo(miten));
+        }
+    }    
     
     /**
      * 
@@ -125,8 +138,9 @@ public class Pallo {
     
     /**
      * 
-     * @param liikeX Mikäli pallo on lähellä liikkua ulos vastustajan puolelta asetetaan paikaksi arvo, jolla
-     * tarkastellaan osuuko maila palloon.
+     * @param liikeX Mikäli pallo on liikkumassa ulos pelialueelta, tarkastellaan osuuko se mahdollisesti
+     * pelaajan tai vastustajan mailaan. Lyonti arvoa käytetään apuna pallon suunnan määrittämiseen onnistuneen
+     * lyönnin jälkeen. Jos lyönti ei onnistu pallo jatkaa liikettään.
      */
     private void rajatapausLeveys(int liikeX) {
         if (this.x + liikeX <= 120 && this.x > 120) {
@@ -157,19 +171,6 @@ public class Pallo {
     
     /**
      * 
-     * @param lyoja Metodi saa parametrina kumpi pelaajista yrittää lyödä palloa. Tämän jälkeen asetetaan
-     * pallon suunta lyöntiyrityksen perusteella.
-     */
-    public void kimpoaMailasta(int miten) {
-        if (miten == 1 || miten == 11) {
-            this.setSuunta(this.pelaajaLyo(miten));
-        } else if (miten == 2 || miten == 12) {
-            this.setSuunta(this.vastustajaLyo(miten));
-        }
-    }
-    
-    /**
-     * 
      * @return kertoo minne suuntaan pallon liike jatkuu kimmotuksen jälkeen.
      */
     private int seinakimmotuksenSuunta() {
@@ -194,7 +195,7 @@ public class Pallo {
     /**
      * 
      * @return palauttaa suunnan jonne pallo liikkuu pelaajan onnistuneen lyönnin jälkeen. Mikäli pallo osuu
-     * mailan reunaan saattaa sen suunta muuttua hieman eritavalla.
+     * mailan reunaan saattaa sen suunta muuttua hieman eritavalla metodin suuntaBonus avulla.
      */
     private int pelaajaLyo(int miten) {
         int uusiSuunta = 0;
@@ -211,7 +212,8 @@ public class Pallo {
     
     /**
      * 
-     * @return palauttaa tiedon minne suuntaan pallo liikkuu vastustajan lyönnin jälkeen.
+     * @return palauttaa tiedon minne suuntaan pallo liikkuu vastustajan lyönnin jälkeen. Samoin kuin pelaajan
+     * lyönnin yhteydessä pallo saattaa muuttaa suuntaa hieman eri tavalla apumetodin suuntaBonus takia.
      */
     private int vastustajaLyo(int miten) {
         int uusiSuunta = 0;
@@ -230,7 +232,8 @@ public class Pallo {
      * 
      * @param miten kertoo kuka palloa lyö ja missä tilanteessa
      * @param suunta kertoo pallon suunnan
-     * @return palauttaa pallon suunnan, tässä saattaa olla mukana int bonuksen lisäys.
+     * @return palauttaa pallon suunnan, tässä saattaa olla mukana int bonuksen lisäys. Pallon vauhti kasvaa
+     * yhdellä lyönnin seurauksena.
      */
     private int suuntaBonus(int miten, int suunta) {
         int suuntaus = suunta;
@@ -240,6 +243,7 @@ public class Pallo {
         if (miten == 11 || miten == 12) {
             return suuntaus + bonus;
         }
+        this.nopeus++;
         return suuntaus;
     }
 }

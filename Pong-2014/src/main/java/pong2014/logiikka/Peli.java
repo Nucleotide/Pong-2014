@@ -9,6 +9,7 @@ import pong2014.ui.Paivitettava;
  *
  * @author joonaslaakkonen
  * Peli on ohjelman runko. Metodien avulla ohjelman suoritus etenee ja pelin pelaaminen tapahtuu käyttöliittymässä.
+ * Peli luo suorasti / epäsuorasti kaikki muut ohjelman logiikan oliot.
  */
 public class Peli extends Timer implements ActionListener {
     
@@ -20,7 +21,7 @@ public class Peli extends Timer implements ActionListener {
     private boolean pause;
     
     /**
-     * Konstruktori luo kentän, pelaajan ja vastustajan sekä asettaa aluksi pelataanko -arvon todeksi.
+     * Konstruktori luo kentän, pelaajan ja vastustajan sekä asettaa aluksi pause -arvon falseksi.
      */
     public Peli() {
         super(40, null);
@@ -61,8 +62,8 @@ public class Peli extends Timer implements ActionListener {
     
     /**
      * 
-     * @param e Pelin runko joka looppaa ja tutkii pelin eri ehtoja ja suorittaa metodeja sen mukaisesti. Parametrina
-     * on käyttäjän syöte.
+     * @param e Pelin runko joka pyörii ja tutkii pelin eri ehtoja ja suorittaa metodeja sen mukaisesti. Käyttäjän syöte
+     * käsitellään Nappaimistonkuuntelijalla, joka tarvittaessa kutsuu pelin logiikkaa.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -99,7 +100,12 @@ public class Peli extends Timer implements ActionListener {
         }
         return false;
     } 
-
+    
+    /**
+     * 
+     * @return palauttaa arvon, jonka perusteella peli pausetetaan. Itse pausen asettaa Nappaimistonkuuntelija asettamalla
+     * pelin Timerin stopille. Kun peliä jatketaan, esiintyy yhden sekunnin viive Timerin asetuksesta johtuen.
+     */
     public boolean pause() {
         this.pause = !this.pause;
         return this.pause;
@@ -108,7 +114,7 @@ public class Peli extends Timer implements ActionListener {
     /**
      * Jos jompikumpi kilpalija saa pisteen, asetetaan pallon suunta asianmukaiseksi.
      */
-    private void uusiPallojaPiste() {
+    public void uusiPallojaPiste() {
         int piste = this.kentta.kenellePiste();
         if (piste == 1) {
             this.vastustaja.lisaaPiste();
@@ -123,14 +129,10 @@ public class Peli extends Timer implements ActionListener {
      * Metodi tutkii onko pallo sijannissa, jossa sen kuuluu kimmota ja vaihtaa liikkeen suuntaa.
      * @return kertoo kimmotaanko vai ei.
      */
-    private boolean kimpoanko() {
-        if (this.pallo.getY() == 50 && this.pallo.getX() > 100) {
+    public boolean kimpoanko() {
+        if (this.pallo.getY() == 50 && this.pallo.getX() > 100 && this.pallo.getX() < 680) {
             return true;
-        } else if (this.pallo.getY() == 380 && this.pallo.getX() > 100) {
-            return true;
-        } else if (this.pallo.getY() == 50 && this.pallo.getX() < 680) {
-            return true;
-        } else if (this.pallo.getY() == 380 && this.pallo.getX() < 680) {
+        } else if (this.pallo.getY() == 380 && this.pallo.getX() > 100 && this.pallo.getX() < 680) {
             return true;
         }
         return false;
