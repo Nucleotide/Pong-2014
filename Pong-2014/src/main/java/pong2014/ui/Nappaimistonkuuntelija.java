@@ -29,7 +29,11 @@ public class Nappaimistonkuuntelija implements KeyListener {
         } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            this.peli.tauko();
+            if (this.peli.pause()) {
+                this.peli.stop();
+            } else {
+                this.peli.start();
+            }
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
             this.peli.getPelaaja().liikutaMailaaYlos();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {

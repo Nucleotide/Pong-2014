@@ -60,12 +60,12 @@ public class Pelaaja {
      * Metodille annetaan parametrina pelin pallo, jota pelaaja yrittää lyödä. Mikäli pelaajan maila on pallon edessä
      * lyönti onnistuu ja pallo kimpoaa takaisin pelilaudalle.
      */
-    void lyo(Pallo pallo) {
+    public void lyo(Pallo pallo) {
         int korkeus = pallo.getY();
         int mailanSijainti = this.maila.getPaikka();
         if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 60) {
             pallo.kimpoaMailasta(1);
-        } else if (korkeus + 19 >= mailanSijainti && korkeus -19 <= mailanSijainti) { 
+        } else if (korkeus + 19 >= mailanSijainti && korkeus <= mailanSijainti + 60 ) { 
             pallo.kimpoaMailasta(11);
         }else {
             pallo.liiku();

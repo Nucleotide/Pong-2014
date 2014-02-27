@@ -15,7 +15,6 @@ public class Peli extends Timer implements ActionListener {
     private Kentta kentta;
     private Pelaaja pelaaja;
     private Vastustaja vastustaja;
-    private boolean pelataanko;
     private Pallo pallo;
     private Paivitettava paivitettava;
     private boolean pause;
@@ -28,11 +27,10 @@ public class Peli extends Timer implements ActionListener {
         this.kentta = new Kentta();
         this.vastustaja = new Vastustaja(195);
         this.pelaaja = new Pelaaja(195);
-        this.pelataanko = true;
         this.pause = false;
         
         addActionListener(this);
-        setInitialDelay(2000);
+        setInitialDelay(1000);
         this.pallo = this.kentta.getPallo();
     }
     
@@ -59,15 +57,7 @@ public class Peli extends Timer implements ActionListener {
     
     public Pallo getPallo() {
         return this.pallo;
-    }    
-    
-    /**
-     * 
-     * @return kertoo jatkuuko peli.
-     */
-    public boolean jatkuu() {
-        return this.pelataanko;
-    }      
+    }        
     
     /**
      * 
@@ -76,7 +66,6 @@ public class Peli extends Timer implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-
         this.pallo.liiku();
         this.vastustaja.liikutaMailaa(this.pallo);
 
@@ -87,16 +76,16 @@ public class Peli extends Timer implements ActionListener {
         } else if (pallo.getLyonti() == 2) {
             this.vastustaja.lyo(this.pallo);
         }
-        
-        this.pallo.setLyonti(0);
 
-        if (this.voittaja()) {
-            this.pelataanko = false;
-        }
+        this.pallo.setLyonti(0);
 
         this.uusiPallojaPiste();
 
-        this.paivitettava.paivita();   
+        this.paivitettava.paivita();  
+        
+        if (this.voittaja()) {
+            stop();
+        }
     }
     
     /**
@@ -111,7 +100,9 @@ public class Peli extends Timer implements ActionListener {
         return false;
     } 
 
-    public void tauko() {
+    public boolean pause() {
+        this.pause = !this.pause;
+        return this.pause;
     }
     
     /**

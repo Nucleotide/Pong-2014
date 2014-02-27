@@ -52,10 +52,12 @@ public class KenttaTest {
     }
     
     @Test
-    public void alaAnnaPistettaJosPalloOnKentalla() {
-        this.pallo.setX(255);
-        int piste = this.kentta.kenellePiste();
-        assertEquals(0, piste);
+    public void alaAnnaPistettaJosPallonSijaintiEiOleAlleTaiYliRajan() {
+        this.pallo.setX(40);
+        assertEquals(0, this.kentta.kenellePiste());
+        
+        this.pallo.setX(740);
+        assertEquals(0, this.kentta.kenellePiste());
     }
     
     @Test

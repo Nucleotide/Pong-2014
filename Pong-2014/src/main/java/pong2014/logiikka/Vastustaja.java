@@ -61,7 +61,7 @@ public class Vastustaja {
         int mailanSijainti = this.maila.getPaikka();
         if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 60) {
             pallo.kimpoaMailasta(2);
-        } else if (korkeus + 19 >= mailanSijainti && korkeus -19 <= mailanSijainti) {
+        } else if (korkeus + 19 >= mailanSijainti && korkeus <= mailanSijainti + 60) {
             pallo.kimpoaMailasta(12);
         } else {
             pallo.liiku();

@@ -32,11 +32,6 @@ public class PeliTest {
     }
     
     @Test
-    public void pelataankoPalauttaaArvonTruePelinAlussa() {
-        assertTrue(this.peli.jatkuu());      
-    }
-    
-    @Test
     public void peliSaaLiikutettuaPalloa() {
         int alku = this.pallo.getX();
         this.pallo.liiku();

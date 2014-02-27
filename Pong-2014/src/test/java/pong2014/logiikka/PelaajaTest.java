@@ -14,6 +14,8 @@ import static org.junit.Assert.*;
 public class PelaajaTest {
     
     private Pelaaja pelaaja;
+    private Pallo pallo;
+    private Maila maila;
     
     public PelaajaTest() {
     }
@@ -21,6 +23,8 @@ public class PelaajaTest {
     @Before
     public void setUp() {
         this.pelaaja = new Pelaaja(195);
+        this.pallo = new Pallo();
+        this.maila = this.pelaaja.getMaila();
     }
     
     @Test
@@ -47,55 +51,59 @@ public class PelaajaTest {
     
     @Test
     public void pelaajaLiikuttaaMailaaYlos() {
-        Maila pelaajanMaila = this.pelaaja.getMaila();
-        int paikka = pelaajanMaila.getPaikka();
+        int paikka = this.maila.getPaikka();
         this.pelaaja.liikutaMailaaYlos();
-        int uusiPaikka = pelaajanMaila.getPaikka();
+        int uusiPaikka = this.maila.getPaikka();
         assertEquals(194, uusiPaikka);
         assertFalse(uusiPaikka == paikka);
     }
     
     @Test
     public void pelaajaLiikuttaaMailaaAlas() {
-        Maila pelaajanMaila = this.pelaaja.getMaila();
-        int paikka = pelaajanMaila.getPaikka();
+        int paikka = this.maila.getPaikka();
         this.pelaaja.liikutaMailaaAlas();
-        int uusiPaikka = pelaajanMaila.getPaikka();
+        int uusiPaikka = this.maila.getPaikka();
         assertEquals(196, uusiPaikka);
         assertFalse(uusiPaikka == paikka);
     }
     
     @Test
     public void pelaajaLyoPalloa() {
-        Pallo pallo = new Pallo();
-        pallo.setX(130);
-        for (int j = 0; j < 30; j++) {
-            pallo.liiku();
-        }
-        int suunta = pallo.getSuunta();
-        this.pelaaja.lyo(pallo);
-        int uusiSuunta = pallo.getSuunta();
-        int paikka = pallo.getX();
-        assertTrue(paikka != 50);
-        assertTrue(suunta != uusiSuunta);
+        this.pallo.setX(120);
+        this.pallo.setSuunta(170);
+        this.pelaaja.lyo(this.pallo);
+        this.pallo.liiku();
+        int paikka = this.pallo.getX();
+        assertTrue(paikka > 120);
+        assertTrue(10 == this.pallo.getSuunta());
     }
     
     @Test
     public void pelaajaEiOsuPalloon() {
-        Pallo pallo = new Pallo();
-        pallo.setSuunta(195);
-        Maila maila = this.pelaaja.getMaila();
-        for (int i = 0; i < 100; i++) {
-            maila.liikuYlos();
-        }
-        pallo.setX(130);
-        for (int j = 0; j < 16; j++) {
-            pallo.liiku();
-        }
+        this.pallo.setSuunta(195);
+        this.maila.setPaikka(51);
+        pallo.setX(120);
         this.pelaaja.lyo(pallo);
-        int paikka = pallo.getX();
-        assertTrue(paikka < 120);
-        
+        this.pallo.liiku();
+        assertTrue(pallo.getX() < 120);       
     }
     
+    @Test
+    public void palloJatkaaLiikettaJosPelaajaEiOsuSiihen() {
+        this.pallo.setX(121);
+        this.pallo.setSuunta(180);
+        this.maila.setPaikka(51);
+        this.pelaaja.lyo(pallo);
+        assertTrue(this.pallo.getX() < 120);
+    }
+    
+    @Test
+    public void tapahtuuReunaLyontiYlhaalla() {
+        this.pallo.setX(120);
+        this.pallo.setY(100);
+        this.pallo.setSuunta(190);
+        this.maila.setPaikka(110);
+        this.pelaaja.lyo(this.pallo);
+        assertTrue(this.pallo.getSuunta() != 190);
+    }
 }

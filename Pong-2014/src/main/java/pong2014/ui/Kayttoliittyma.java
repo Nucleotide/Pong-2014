@@ -1,9 +1,14 @@
 package pong2014.ui;
  
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import pong2014.logiikka.Peli;
  
@@ -30,7 +35,7 @@ public class Kayttoliittyma implements Runnable {
     public void run() {
         frame = new JFrame("Pong");
 
-        frame.setPreferredSize(new Dimension(800, 550));
+        frame.setPreferredSize(new Dimension(800, 500));
         frame.setResizable(false);
  
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -48,8 +53,18 @@ public class Kayttoliittyma implements Runnable {
      * Metodille annetaan container, johon lisätään piirtoalusta.
      */
     public void luoKomponentit(Container container) {
-        container.add(this.alusta);   
+        container.setLayout(new BorderLayout());
+        container.add(this.luoValikko(), BorderLayout.PAGE_END);     
+        container.add(this.alusta, BorderLayout.CENTER);      
     }
+    
+    private JPanel luoValikko() {
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Esc = lopeta ohjelma, Space = tauko, Enter = pelaa uudelleen"));
+
+        
+        return panel;
+    }    
  
     public JFrame getFrame() {
         return frame;
