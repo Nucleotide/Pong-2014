@@ -74,7 +74,7 @@ public class Kayttoliittyma implements Runnable {
      * Lisätään kuuntelija näyttöön.
      */
     private void lisaaKuuntelijat() {
-        frame.addKeyListener(new Nappaimistonkuuntelija(this.peli));
+        frame.addKeyListener(new Nappaimistonkuuntelija(this.peli, this.frame));
     }   
     
     public Paivitettava getPaivitettava(){
