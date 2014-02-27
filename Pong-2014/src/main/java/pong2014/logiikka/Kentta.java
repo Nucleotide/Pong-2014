@@ -21,29 +21,12 @@ public class Kentta {
         this.leveys = 600;
     }
     /**
-     * 
-     * @return palauttaa Kentan luoman pallon. 
+     * Getterit ja setterit 
      */
     public Pallo getPallo() {
         return this.pallo;
     }
-    /**
-     * 
-     * @return palauttaa tiedon kenelle edellisestä pallosta annetaan piste. Piste määritellään
-     * pallon sijainnin perusteella. arvolla 1 piste menee vastustajalle ja arvolla 2 psite menee pelaajalle.
-     */
-    public int kenellePiste() {
-        int kummalle = 0;
-        if (this.pallo.getX() == 50) {
-            kummalle = 1;
-        } else if (this.pallo.getX() == 750){
-            kummalle = 2;
-        } else {
-            kummalle = 0;
-        }
-        return kummalle;
-    }
-
+    
     public int getLeveys() {
         return this.leveys;
     }
@@ -52,4 +35,20 @@ public class Kentta {
         return this.korkeus;
     }
     
+    /**
+     * 
+     * @return palauttaa tiedon kenelle edellisestä pallosta annetaan piste. Piste määritellään
+     * pallon sijainnin perusteella. arvolla 1 piste menee vastustajalle ja arvolla 2 psite menee pelaajalle.
+     */
+    public int kenellePiste() {
+        int kummalle = 0;
+        if (this.pallo.getX() < 40) {
+            kummalle = 1;
+        } else if (this.pallo.getX() > 740){
+            kummalle = 2;
+        } else {
+            kummalle = 0;
+        }
+        return kummalle;
+    }
 }

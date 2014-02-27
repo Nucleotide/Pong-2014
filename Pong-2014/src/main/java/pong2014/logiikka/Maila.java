@@ -21,6 +21,27 @@ public class Maila {
         this.korkeus = 60;
         this.leveys = 20;
     }
+    
+    /**
+     * Getterit ja setterit
+     */
+          
+    public int getPaikka() {
+        return this.paikka;
+    }
+    
+    public int getLeveys() {
+        return this.leveys;
+    }
+    
+    public int getKorkeus() {
+        return this.korkeus;
+    }  
+    
+    public void setPaikka(int paikka) {
+        this.paikka = paikka;
+    }
+    
     /**
      * Mailan liikuttaminen ylöspäin. Mailaa ei voi liikuttaa pois pelilaudalta.
      */
@@ -37,22 +58,4 @@ public class Maila {
             this.paikka--;
         }
     }
-    
-    public int getPaikka() {
-        return this.paikka;
-    }
-    
-    public int getLeveys() {
-        return this.leveys;
-    }
-    
-    public int getKorkeus() {
-        return this.korkeus;
-    }  
-    
-    public void setPaikka(int paikka) {
-        this.paikka = paikka;
-    }
 }
-
-

@@ -73,34 +73,10 @@ public class PalloTest {
     
     @Test
     public void pallonVoiAsettaaEriPaikkaan() {
-        this.pallo.setPaikka(50);
+        this.pallo.setX(50);
         int paikka = this.pallo.getX();
         assertEquals(50, paikka);
-    }
-    
-    @Test
-    public void palloEiLiikuUlosPelaajanPuoleltaIlmanTormaysTarkastusta() {
-        this.pallo.setPaikka(130);
-        this.pallo.setSuunta(180);
-        for (int i = 0; i < 15; i++) {
-            this.pallo.liiku();
-        }
-        
-        int paikka = this.pallo.getX();
-        assertEquals(120, paikka);
-    }
-    
-    @Test
-    public void palloEiLiikuUlosVastustajanPuoleltaIlmanTormaysTarkastusta() {
-        this.pallo.setPaikka(650);
-        this.pallo.setSuunta(0);
-        for (int i = 0; i < 15; i++) {
-            this.pallo.liiku();
-        }
-        
-        int paikka = this.pallo.getX();
-        assertEquals(660, paikka);
-    }   
+    }  
     
     @Test
     public void palloEiLiikuYlhaaltaPoisLaudalta() {
@@ -165,7 +141,7 @@ public class PalloTest {
     @Test
     public void vastustajaLyoAlhaaltaTulevaaPalloa() {
         this.pallo.setSuunta(80);
-        this.pallo.kimpoaMailasta(4);
+        this.pallo.kimpoaMailasta(2);
         int suunta = this.pallo.getSuunta();
         assertEquals(100 ,suunta);
     }
@@ -173,7 +149,7 @@ public class PalloTest {
     @Test
     public void vastustajaLyoYlhaaltaTulevaaPalloa() {
         this.pallo.setSuunta(350);
-        this.pallo.kimpoaMailasta(3);
+        this.pallo.kimpoaMailasta(2);
         int suunta = this.pallo.getSuunta();
         assertEquals(190 ,suunta);
     }       

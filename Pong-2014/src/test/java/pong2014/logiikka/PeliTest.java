@@ -14,6 +14,10 @@ import static org.junit.Assert.*;
 public class PeliTest {
     
     private Peli peli;
+    private Pallo pallo;
+    private Kentta kentta;
+    private Pelaaja pelaaja;
+    private Vastustaja vastustaja;
     
     public PeliTest() {
     }
@@ -21,57 +25,49 @@ public class PeliTest {
     @Before
     public void setUp() {
         this.peli = new Peli();
+        this.pallo = this.peli.getPallo();
+        this.kentta = this.peli.getKentta();
+        this.pelaaja = this.peli.getPelaaja();
+        this.vastustaja = this.peli.getVastustaja();
     }
     
     @Test
     public void pelataankoPalauttaaArvonTruePelinAlussa() {
-        assertFalse(!this.peli.jatkuu());
-        
+        assertTrue(this.peli.jatkuu());      
     }
     
     @Test
     public void peliSaaLiikutettuaPalloa() {
-        Pallo pallo = this.peli.getPallo();
-        int alku = pallo.getX();
-        pallo.liiku();
-        int loppu = pallo.getX();
+        int alku = this.pallo.getX();
+        this.pallo.liiku();
+        int loppu = this.pallo.getX();
         
         assertFalse(alku == loppu);
     }
     
     @Test
-    public void peliPalauttaaLuomansaOliot() {
-        Kentta a = this.peli.getKentta();
-        Pelaaja b = this.peli.getPelaaja();
-        Vastustaja c = this.peli.getVastustaja();
-        Pallo d = this.peli.getPallo();
-        
-        assertNotNull(a);
-        assertNotNull(b);
-        assertNotNull(c);
-        assertNotNull(d);
-    }
-    
-    @Test
-    public void kentallaOnPallo() {
-        Pallo pallo = this.peli.getKentta().getPallo();
-        assertNotNull(pallo);
+    public void peliPalauttaaLuomansaOliot() {        
+        assertNotNull(this.kentta);
+        assertNotNull(this.pelaaja);
+        assertNotNull(this.vastustaja);
     }
     
     @Test
     public void peliLiikuttaaVastustajanMailaa() {
-        Maila maila = this.peli.getVastustaja().getMaila();
+        Maila maila = this.vastustaja.getMaila();
+        this.pallo.setY(56);
         int a = maila.getPaikka();
-        this.peli.getVastustaja().liikutaMailaa();
+        this.vastustaja.liikutaMailaa(this.pallo);
         int b = maila.getPaikka();
         assertFalse(a == b);
     }
     
     @Test
     public void palloEiSaaKimmotaJosSeEiOsuSeinaan() {
-        Pallo pallo = this.peli.getPallo();
-        pallo.setY(40);
-        assertFalse(this.peli.kimpoanko());
+        this.pallo.setY(100);
+        this.pallo.setSuunta(15);
+        this.pallo.liiku();
+        assertTrue(this.pallo.getSuunta() == 15);
     }
     
     @Test
@@ -79,8 +75,7 @@ public class PeliTest {
         Pelaaja pelaaja = this.peli.getPelaaja();
         for (int i = 0; i < 11; i++) {
             pelaaja.lisaaPiste();
-        }
-        
+        }    
         assertTrue(this.peli.voittaja());  
     }
     

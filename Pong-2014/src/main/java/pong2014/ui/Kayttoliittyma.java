@@ -7,6 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import pong2014.logiikka.Peli;
  
+/**
+ *
+ * @author joonaslaakkonen
+ * Pelin käli.
+ */
 public class Kayttoliittyma implements Runnable {
  
     private JFrame frame;
@@ -17,16 +22,18 @@ public class Kayttoliittyma implements Runnable {
         this.peli = peli;
         this.alusta = new Piirtoalusta(this.peli);
     }
- 
+    
+    /**
+     * Ylikirjoitettu metodi, joka liittää käliin tarvittavat oliot ja näyttää sen pelaajalle.
+     */
     @Override
     public void run() {
         frame = new JFrame("Pong");
 
-        frame.setPreferredSize(new Dimension(800, 450));
+        frame.setPreferredSize(new Dimension(800, 550));
         frame.setResizable(false);
  
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setBackground(Color.BLACK);
  
         luoKomponentit(frame.getContentPane());
         lisaaKuuntelijat();
@@ -34,7 +41,12 @@ public class Kayttoliittyma implements Runnable {
         frame.pack();
         frame.setVisible(true);
     }
- 
+    
+    /**
+     * 
+     * @param container 
+     * Metodille annetaan container, johon lisätään piirtoalusta.
+     */
     public void luoKomponentit(Container container) {
         container.add(this.alusta);   
     }
@@ -43,6 +55,9 @@ public class Kayttoliittyma implements Runnable {
         return frame;
     }
     
+    /**
+     * Lisätään kuuntelija näyttöön.
+     */
     private void lisaaKuuntelijat() {
         frame.addKeyListener(new Nappaimistonkuuntelija(this.peli));
     }   

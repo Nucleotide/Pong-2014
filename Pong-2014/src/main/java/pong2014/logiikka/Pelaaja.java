@@ -19,6 +19,15 @@ public class Pelaaja {
         this.pisteet = 0;
     }
     
+    /**
+     * 
+     * Setterit ja getterit
+     */
+    
+    public Maila getMaila() {
+        return this.maila;
+    }    
+    
     public int kerroPisteet() {
         return this.pisteet;
     }
@@ -37,20 +46,12 @@ public class Pelaaja {
      */
     public void liikutaMailaaYlos() {
         this.maila.liikuYlos();
-        this.maila.liikuYlos();
-        this.maila.liikuYlos();
-        this.maila.liikuYlos();
-        this.maila.liikuYlos();
     }
     
     /**
      * Liikutetaan pelaajan mailaa alaspäin pelilaudalla.
      */
     public void liikutaMailaaAlas() {
-        this.maila.liikuAlas();
-        this.maila.liikuAlas();
-        this.maila.liikuAlas();
-        this.maila.liikuAlas();
         this.maila.liikuAlas();
     }
     /**
@@ -64,12 +65,10 @@ public class Pelaaja {
         int mailanSijainti = this.maila.getPaikka();
         if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 60) {
             pallo.kimpoaMailasta(1);
-        } else {
-            pallo.setPaikka(50);
+        } else if (korkeus + 19 >= mailanSijainti && korkeus -19 <= mailanSijainti) { 
+            pallo.kimpoaMailasta(11);
+        }else {
+            pallo.liiku();
         }
-    }
-    
-    public Maila getMaila() {
-        return this.maila;
     }
 }

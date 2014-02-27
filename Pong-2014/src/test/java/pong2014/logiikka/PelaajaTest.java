@@ -68,7 +68,7 @@ public class PelaajaTest {
     @Test
     public void pelaajaLyoPalloa() {
         Pallo pallo = new Pallo();
-        pallo.setPaikka(130);
+        pallo.setX(130);
         for (int j = 0; j < 30; j++) {
             pallo.liiku();
         }
@@ -88,13 +88,13 @@ public class PelaajaTest {
         for (int i = 0; i < 100; i++) {
             maila.liikuYlos();
         }
-        pallo.setPaikka(130);
-        for (int j = 0; j < 13; j++) {
+        pallo.setX(130);
+        for (int j = 0; j < 16; j++) {
             pallo.liiku();
         }
         this.pelaaja.lyo(pallo);
         int paikka = pallo.getX();
-        assertEquals(50, paikka);
+        assertTrue(paikka < 120);
         
     }
     

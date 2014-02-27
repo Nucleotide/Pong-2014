@@ -8,6 +8,8 @@ import pong2014.logiikka.Peli;
 /**
  *
  * @author joonaslaakkonen
+ * Luokka toteuttaa Javan valmiin KeyListener -luokan. Metodeista tarpeelliset ylikirjoitettu.
+ * Konstruktorissa kuuntelijalle annetaan viite Peliin.
  */
 public class Nappaimistonkuuntelija implements KeyListener {
     private Peli peli;

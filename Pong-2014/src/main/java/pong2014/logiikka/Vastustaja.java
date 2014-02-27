@@ -23,11 +23,14 @@ public class Vastustaja {
     }
     
     /**
-     * 
-     * @return kertoo vastustajan pistemäärän.
+     * Getterit ja setterit
      */
     public int kerroPisteet() {
         return this.pisteet;
+    }
+    
+    public Maila getMaila() {
+        return this.maila;
     }
     
     /**
@@ -41,18 +44,12 @@ public class Vastustaja {
     /**
      * Metodi liikuttaa Vastustajan mailaa pelin ohjaamana. Suunta vaihtuu jos maila saavuttaa seinän.
      */
-    public void liikutaMailaa() {
-        if (suuntain == 1 && this.maila.getPaikka() > 50 ) {
+    public void liikutaMailaa(Pallo pallo) {
+        if (pallo.getY() < this.maila.getPaikka()) {
             this.maila.liikuYlos();
-        } else if (this.maila.getPaikka() <= 50) {
-            suuntain = 0;
+        } else if (pallo.getY() + 50 > this.maila.getPaikka()) {
             this.maila.liikuAlas();
-        } else if (suuntain == 0 && this.maila.getPaikka() < 340) {
-            this.maila.liikuAlas();
-        } else if (this.maila.getPaikka() >= 340) {
-            suuntain = 1;
-            this.maila.liikuYlos();      
-        }     
+        }
     }
     
     /**
@@ -63,14 +60,11 @@ public class Vastustaja {
         int korkeus = pallo.getY();
         int mailanSijainti = this.maila.getPaikka();
         if (korkeus >= mailanSijainti && korkeus <= mailanSijainti + 60) {
-            pallo.kimpoaMailasta(0);
+            pallo.kimpoaMailasta(2);
+        } else if (korkeus + 19 >= mailanSijainti && korkeus -19 <= mailanSijainti) {
+            pallo.kimpoaMailasta(12);
         } else {
-            pallo.setPaikka(750);
+            pallo.liiku();
         }
     }
-    
-    public Maila getMaila() {
-        return this.maila;
-    }
-    
 }

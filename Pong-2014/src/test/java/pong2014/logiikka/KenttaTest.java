@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 public class KenttaTest {
     
     private Kentta kentta;
+    private Pallo pallo;
     
     public KenttaTest() {
     }
@@ -21,20 +22,19 @@ public class KenttaTest {
     @Before
     public void setUp() {
         this.kentta = new Kentta();
+        this.pallo = this.kentta.getPallo();
     }
     
     @Test
     public void pisteOikeinVastustajalle() {
-        Pallo pallo = this.kentta.getPallo();
-        pallo.setPaikka(50);
+        this.pallo.setX(30);
         int piste = this.kentta.kenellePiste();
         assertEquals(1, piste);
     }
     
     @Test
     public void pisteOikeinPelaajalle() {
-        Pallo pallo = this.kentta.getPallo();
-        pallo.setPaikka(750);
+        this.pallo.setX(770);
         int piste = this.kentta.kenellePiste();
         assertEquals(2, piste);        
     }
@@ -53,9 +53,14 @@ public class KenttaTest {
     
     @Test
     public void alaAnnaPistettaJosPalloOnKentalla() {
-        Pallo uusi = new Pallo();
-        int paikka = this.kentta.kenellePiste();
-        assertEquals(0, paikka);
+        this.pallo.setX(255);
+        int piste = this.kentta.kenellePiste();
+        assertEquals(0, piste);
     }
+    
+    @Test
+    public void kentallaOnPallo() {
+        assertNotNull(this.pallo);
+    }    
     
 }

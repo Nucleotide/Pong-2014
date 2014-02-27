@@ -15,6 +15,7 @@ public class Pallo {
     private int suunta;
     private int korkeus;
     private int leveys;
+    private int lyonti;
     
     /**
      * Konstruktori luo uuden pallon pelilaudan keskelle. Sen lisäksi pallon koko määritellään ja pallolle
@@ -25,10 +26,16 @@ public class Pallo {
         this.y = 215;
         this.korkeus = 20;
         this.leveys = 20;
+        this.lyonti = 0;
         Random random = new Random();
         int alkuSuunta = random.nextInt(2);
         this.alunSuunta(alkuSuunta);
     }
+    
+    /**
+     * 
+     * Getterit ja setterit
+     */
     
     public int getX() {
         return this.x;
@@ -40,11 +47,36 @@ public class Pallo {
     
     public void setX(int minne) {
         this.x = minne;
-    }
+    }    
     
     public void setY(int minne) {
         this.y = minne;
+    } 
+        
+    public int getLeveys() {
+        return this.leveys;
     }
+    
+    public int getLyonti() {
+        return this.lyonti;
+    }
+    
+    public void setLyonti(int arvo) {
+        this.lyonti = arvo;
+    }
+    
+    public int getKorkeus() {
+        return this.korkeus;
+    }
+    
+    public void setSuunta(int uusiSuunta) {
+        this.suunta = uusiSuunta;
+    }
+    
+    public int getSuunta() {
+        return this.suunta;
+    }
+    
     /**
      * Metodi liikuttaa palloa pelin kutsuessa pallon liikettä. Metodi tarkastelee myös mahdolliset liikkumiset
      * seinien ja mailojen lähellä.
@@ -56,18 +88,7 @@ public class Pallo {
         this.rajatapausLeveys(liikeX);
         this.rajatapausKorkeus(liikeY);
     }
-    /**
-     * 
-     * @param uusiSuunta asettaa pallolle uuden suunnan.
-     */
-    public void setSuunta(int uusiSuunta) {
-        this.suunta = uusiSuunta;
-    }
-    
-    public int getSuunta() {
-        return this.suunta;
-    }
-    
+
     /**
      * 
      * @param suunta määrää minne suuntaan pallo lähtee. uusiPallo -metodia kutsutaan kun pelaaja tai vastustaja
@@ -81,10 +102,6 @@ public class Pallo {
         } else {
             this.setSuunta(350);
         }
-    }
-    
-    public void setPaikka(int paikka) {
-        this.x = paikka;
     }
     
     /**
@@ -112,10 +129,12 @@ public class Pallo {
      * tarkastellaan osuuko maila palloon.
      */
     private void rajatapausLeveys(int liikeX) {
-        if (this.x + liikeX <= 120) {
-            this.x = 120;
-        } else if (this.x + liikeX >= 660) {
-            this.x = 660;
+        if (this.x + liikeX <= 120 && this.x > 120) {
+            this.lyonti = 1;
+            this.x += liikeX;;
+        } else if (this.x + liikeX >= 660 && this.x <660) {
+            this.lyonti = 2;
+            this.x += liikeX;
         } else {
             this.x += liikeX;
         }
@@ -139,13 +158,13 @@ public class Pallo {
     /**
      * 
      * @param lyoja Metodi saa parametrina kumpi pelaajista yrittää lyödä palloa. Tämän jälkeen asetetaan
-     * pallon suunta.
+     * pallon suunta lyöntiyrityksen perusteella.
      */
-    public void kimpoaMailasta(int lyoja) {
-        if (lyoja == 1) {
-            this.setSuunta(this.pelaajaLyo());
-        } else {
-            this.setSuunta(this.vastustajaLyo());
+    public void kimpoaMailasta(int miten) {
+        if (miten == 1 || miten == 11) {
+            this.setSuunta(this.pelaajaLyo(miten));
+        } else if (miten == 2 || miten == 12) {
+            this.setSuunta(this.vastustajaLyo(miten));
         }
     }
     
@@ -174,9 +193,10 @@ public class Pallo {
     
     /**
      * 
-     * @return palauttaa suunnan jonne pallo liikkuu pelaajan onnistuneen lyönnin jälkeen.
+     * @return palauttaa suunnan jonne pallo liikkuu pelaajan onnistuneen lyönnin jälkeen. Mikäli pallo osuu
+     * mailan reunaan saattaa sen suunta muuttua hieman eritavalla.
      */
-    private int pelaajaLyo() {
+    private int pelaajaLyo(int miten) {
         int uusiSuunta = 0;
         int erotus = 0;
         if (this.suunta >= 180 && this.suunta <= 360) {
@@ -186,14 +206,14 @@ public class Pallo {
             erotus = 180 - this.suunta;
             uusiSuunta = 0 + erotus;
         }
-        return uusiSuunta;
+        return this.suuntaBonus(miten, uusiSuunta);
     }
     
     /**
      * 
      * @return palauttaa tiedon minne suuntaan pallo liikkuu vastustajan lyönnin jälkeen.
      */
-    private int vastustajaLyo() {
+    private int vastustajaLyo(int miten) {
         int uusiSuunta = 0;
         int erotus = 0;
         if (this.suunta < 90 && this.suunta >= 0) {
@@ -203,14 +223,23 @@ public class Pallo {
             erotus = 360 - this.suunta;
             uusiSuunta = 180 + erotus;
         }
-        return uusiSuunta;
+        return this.suuntaBonus(miten, uusiSuunta);
     }   
     
-    public int getLeveys() {
-        return this.leveys;
-    }
-    
-    public int getKorkeus() {
-        return this.korkeus;
+    /**
+     * 
+     * @param miten kertoo kuka palloa lyö ja missä tilanteessa
+     * @param suunta kertoo pallon suunnan
+     * @return palauttaa pallon suunnan, tässä saattaa olla mukana int bonuksen lisäys.
+     */
+    private int suuntaBonus(int miten, int suunta) {
+        int suuntaus = suunta;
+        Random arpa = new Random();
+        int bonus = arpa.nextInt(25);
+        
+        if (miten == 11 || miten == 12) {
+            return suuntaus + bonus;
+        }
+        return suuntaus;
     }
 }

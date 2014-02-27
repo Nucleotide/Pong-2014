@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 public class VastustajaTest {
     
     private Vastustaja vastustaja;
+    private Pallo pallo;
     
     public VastustajaTest() {
     }
@@ -21,6 +22,7 @@ public class VastustajaTest {
     @Before
     public void setUp() {
         this.vastustaja = new Vastustaja(195);
+        this.pallo = new Pallo();
     }
 
     @Test
@@ -47,65 +49,49 @@ public class VastustajaTest {
     
     @Test
     public void vastustajaLyoPalloa() {
-        Pallo pallo = new Pallo();
         Maila maila = vastustaja.getMaila();
-        pallo.setSuunta(0);
-        pallo.setPaikka(670);
+        this.pallo.setSuunta(0);
+        this.pallo.setX(670);
         for (int i = 0; i < 15 ; i++) {
-            pallo.liiku();
+            this.pallo.liiku();
         }        
-        this.vastustaja.lyo(pallo);
-        int paikka = pallo.getX();
-        assertTrue(paikka != 750);
+        this.vastustaja.lyo(this.pallo);
+        assertTrue(pallo.getSuunta() != 0);
     }
     
     @Test
     public void vastustajaEiOsuPalloon() {
-        Pallo pallo = new Pallo();
-        pallo.setSuunta(350);
+        this.pallo.setSuunta(350);
         Maila maila = this.vastustaja.getMaila();
         for (int i = 0; i < 50; i++) {
             maila.liikuYlos();
         }
-        pallo.setPaikka(670);
+        this.pallo.setX(670);
         for (int j = 0; j < 30; j++) {
-            pallo.liiku();
+            this.pallo.liiku();
         }
-        this.vastustaja.lyo(pallo);
-        int paikka = pallo.getX();
-        assertEquals(750, paikka);        
+        this.vastustaja.lyo(this.pallo);
+        assertTrue(this.pallo.getX() > 660);        
     }
     
     @Test
     public void vastustajanMailaaHalutaanLiikuttaaYlos() {
         Maila maila = this.vastustaja.getMaila();
-        this.vastustaja.liikutaMailaa();
-        
+        this.pallo.setY(55);
+        this.vastustaja.liikutaMailaa(this.pallo); 
         int paikka = maila.getPaikka();
-        this.vastustaja.liikutaMailaa();
-        int paikkaLopuksi = maila.getPaikka();
+        this.vastustaja.liikutaMailaa(this.pallo);
         
-        assertTrue(paikka != paikkaLopuksi);
-    }
-    
-    @Test
-    public void vastustajanMailaaHalutaanLiikuttaaYlosII() {
-        Maila maila = this.vastustaja.getMaila();
-        maila.setPaikka(340);
-        this.vastustaja.liikutaMailaa();
-        int paikkaLopuksi = maila.getPaikka();
-        
-        assertTrue(339 == paikkaLopuksi);
+        assertTrue(paikka != maila.getPaikka());
     }
     
     @Test
     public void vastustajanMailaaHalutaanLiikuttaAlas() {
         Maila maila = this.vastustaja.getMaila();
+        this.pallo.setY(400);
         maila.setPaikka(50);
-        this.vastustaja.liikutaMailaa();
-        int paikkaLopuksi = maila.getPaikka();
+        this.vastustaja.liikutaMailaa(this.pallo);
         
-        assertTrue(51 == paikkaLopuksi);
+        assertTrue(51 == maila.getPaikka());
     }
-    
 }
