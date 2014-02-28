@@ -244,6 +244,10 @@ public class Pallo {
             return suuntaus + bonus;
         }
         this.nopeus++;
+        
+        if (suuntaus == 0 || suuntaus == 180) {
+            return suuntaus + 3;
+        }
         return suuntaus;
     }
 }

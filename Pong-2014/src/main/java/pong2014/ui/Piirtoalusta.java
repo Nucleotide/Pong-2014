@@ -48,9 +48,9 @@ public class Piirtoalusta extends JPanel implements Paivitettava {
         g.drawString("Vastustajan pisteet: " + this.peli.getVastustaja().kerroPisteet(), 565, 435);
         
         if (this.peli.getVastustaja().kerroPisteet() == 10) {
-            g.drawString("HÄVISIT!", 400, 235);
+            g.drawString("HÄVISIT!", 400, 265);
         } else if (this.peli.getPelaaja().kerroPisteet() == 10) {
-            g.drawString("VOITIT!", 300, 235);
+            g.drawString("VOITIT!", 300, 265);
         }
     }  
 
